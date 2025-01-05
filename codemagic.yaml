@@ -1,0 +1,26 @@
+workflows:
+  build_and_publish:
+    name: Build and Publish iOS
+    max_build_duration: 60
+    environment:
+      flutter: "3.22.0" # Specify Flutter version 3.22
+      vars:
+        BUNDLE_ID: dev.omv88.simpleBmiCalculator # Define tu nuevo Bundle ID aquí
+        APP_STORE_CONNECT_API_KEY: $APP_STORE_CONNECT_API_KEY # Add your API Key here
+        APP_STORE_CONNECT_ISSUER_ID: $APP_STORE_CONNECT_ISSUER_ID # Add your Issuer ID here
+        APP_STORE_CONNECT_KEY_ID: $APP_STORE_CONNECT_KEY_ID # Add your Key ID here
+    scripts:
+      - name: Print environment variables
+        script: |
+          printenv
+      - name: Update Info.plist with new Bundle ID
+        script: |
+          /usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier $BUNDLE_ID" ios/Runner/Info.plist
+      - name: Build iOS app
+        script: |
+          flutter build ios --release
+      - name: Publish to TestFlight
+        script: |
+          xcrun altool --upload-app --type ios --file build/ios/ipa/*.ipa --apiKey $APP_STORE_CONNECT_KEY_ID --apiIssuer $APP_STORE_CONNECT_ISSUER_ID
+    artifacts:
+      - build/ios/ipa/*.ipa
