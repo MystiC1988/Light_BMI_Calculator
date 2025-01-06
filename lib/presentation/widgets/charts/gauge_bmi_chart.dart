@@ -12,8 +12,8 @@ class GaugeBmiChart extends StatelessWidget {
       RadialAxis(
           minimum: 13,
           maximum: 35,
-          startAngle: 180,
-          endAngle: 0,
+          startAngle: 170,
+          endAngle: 10,
           radiusFactor: 1,
           axisLineStyle: const AxisLineStyle(
               thickness: 0.2,
@@ -27,7 +27,7 @@ class GaugeBmiChart extends StatelessWidget {
                 startValue: 0,
                 endValue: 18.5,
                 labelStyle: const GaugeTextStyle(
-                    fontSize: 12, fontWeight: FontWeight.bold),
+                    fontSize: 15, fontWeight: FontWeight.bold),
                 color: Colors.blue,
                 startWidth: 80,
                 endWidth: 80,
@@ -36,7 +36,7 @@ class GaugeBmiChart extends StatelessWidget {
                 startValue: 18.5,
                 endValue: 24.9,
                 labelStyle: const GaugeTextStyle(
-                    fontSize: 12, fontWeight: FontWeight.bold),
+                    fontSize: 15, fontWeight: FontWeight.bold),
                 color: const Color.fromARGB(255, 23, 179, 28),
                 startWidth: 80,
                 endWidth: 80,
@@ -45,7 +45,7 @@ class GaugeBmiChart extends StatelessWidget {
                 startValue: 24.9,
                 endValue: 29.9,
                 labelStyle: const GaugeTextStyle(
-                    fontSize: 12, fontWeight: FontWeight.bold),
+                    fontSize: 15, fontWeight: FontWeight.bold),
                 color: const Color.fromARGB(255, 200, 73, 27),
                 startWidth: 80,
                 endWidth: 80,
@@ -54,7 +54,7 @@ class GaugeBmiChart extends StatelessWidget {
                 startValue: 29.9,
                 endValue: 40,
                 labelStyle: const GaugeTextStyle(
-                    fontSize: 12, fontWeight: FontWeight.bold),
+                    fontSize: 15, fontWeight: FontWeight.bold),
                 color: const Color.fromARGB(255, 183, 17, 5),
                 startWidth: 80,
                 endWidth: 80,
@@ -70,7 +70,7 @@ class GaugeBmiChart extends StatelessWidget {
             GaugeAnnotation(
                 widget: Text("BMI: $bmi",
                     style: const TextStyle(
-                        fontSize: 25, fontWeight: FontWeight.bold)),
+                        fontSize: 30, fontWeight: FontWeight.bold)),
                 angle: 90,
                 positionFactor: 0.5)
           ])

@@ -1,7 +1,7 @@
-name: simple_bmi_calculator
-description: "A new Flutter project."
+name: light_bmi_calculator
+description: "Simple BMI Calculator for mobile devices"
 publish_to: "none"
-version: 1.0.0+1
+version: 1.0.0+3
 
 environment:
   sdk: ^3.5.4
@@ -13,6 +13,7 @@ dependencies:
   url_launcher: ^6.3.1
   syncfusion_flutter_core: ^23.1.44
   syncfusion_flutter_gauges: ^23.1.44
+  flutter_launcher_icons: ^0.14.2
 
 dev_dependencies:
   flutter_test:
@@ -21,3 +22,17 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  fonts:
+    - family: Akayatelivigala
+      fonts:
+        - asset: assets/fonts/akayatelivigala_regular.ttf
+  assets:
+    - assets/images/
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/icons/icon_bright.png"
+  image_path_ios: "assets/images/icons/icon_bright.png"
+  image_path_ios_dark_transparent: "assets/images/icons/icon_dark.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
