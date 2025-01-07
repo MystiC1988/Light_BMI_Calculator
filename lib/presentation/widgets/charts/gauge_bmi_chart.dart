@@ -16,7 +16,7 @@ class GaugeBmiChart extends StatelessWidget {
           endAngle: 20,
           radiusFactor: 1.1,
           axisLineStyle: const AxisLineStyle(
-              thickness: 80,
+              thickness: 100,
               thicknessUnit: GaugeSizeUnit.logicalPixel,
               cornerStyle: CornerStyle.bothFlat),
           showTicks: false,
@@ -74,7 +74,7 @@ class GaugeBmiChart extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         color: getColorByValue())),
                 angle: 90,
-                positionFactor: 0.6)
+                positionFactor: 0.65)
           ])
     ]);
   }

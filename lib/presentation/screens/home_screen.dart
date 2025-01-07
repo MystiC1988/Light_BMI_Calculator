@@ -17,10 +17,13 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   TextEditingController heightFtController = TextEditingController();
   TextEditingController heightInController = TextEditingController();
+  TextEditingController heightCmController = TextEditingController();
   TextEditingController weightController = TextEditingController();
+  TextEditingController weightKgController = TextEditingController();
   FocusNode nullFocus = FocusNode();
   String bmi = "0.0";
   double calculatedBMI = 0.0;
+  List<bool> isUSUnits = [true, false];
 
   @override
   Widget build(BuildContext context) {
@@ -57,34 +60,103 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Column(
                         children: [
                           GaugeBmiChart(value: calculatedBMI, bmi: bmi),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              const Text('Height: ',
-                                  style: CustomTextStyles.bigTextLabel),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              getHeightFtTextField(),
-                              const Text(' ft.',
-                                  style: CustomTextStyles.bigTextLabel),
-                              const SizedBox(width: 20),
-                              getHeightinTextField(),
-                              const Text(' in.',
-                                  style: CustomTextStyles.bigTextLabel),
-                            ],
-                          ),
+                          (isUSUnits[0])
+                              ? Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    const Text('Height: ',
+                                        style: CustomTextStyles.bigTextLabel),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    getHeightFtTextField(),
+                                    const Text(' ft.',
+                                        style: CustomTextStyles.bigTextLabel),
+                                    const SizedBox(width: 20),
+                                    getHeightinTextField(),
+                                    const Text(' in.',
+                                        style: CustomTextStyles.bigTextLabel),
+                                  ],
+                                )
+                              : Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    const Text('Height: ',
+                                        style: CustomTextStyles.bigTextLabel),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    getHeightCmTextField(),
+                                    const Text(' cm.',
+                                        style: CustomTextStyles.bigTextLabel),
+                                  ],
+                                ),
                           const SizedBox(height: 20),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Text('Weight: ',
-                                  style: CustomTextStyles.bigTextLabel),
-                              weightTextField(),
-                              const Text(' lbs.',
-                                  style: CustomTextStyles.bigTextLabel),
+                          (isUSUnits[0])
+                              ? Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    const Text('Weight: ',
+                                        style: CustomTextStyles.bigTextLabel),
+                                    weightTextField(),
+                                    const Text(' lbs.',
+                                        style: CustomTextStyles.bigTextLabel),
+                                  ],
+                                )
+                              : Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    const Text('Weight: ',
+                                        style: CustomTextStyles.bigTextLabel),
+                                    getWeightKgTextField(),
+                                    const Text(' kg.',
+                                        style: CustomTextStyles.bigTextLabel),
+                                  ],
+                                ),
+                          const SizedBox(height: 30),
+                          SegmentedButton<int>(
+                            style: ButtonStyle(
+                              backgroundColor:
+                                  WidgetStateProperty.resolveWith<Color>(
+                                (Set<WidgetState> states) {
+                                  if (states.contains(WidgetState.selected)) {
+                                    return const Color.fromARGB(255, 63, 32,
+                                        156); // Color for selected segment
+                                  }
+                                  return const Color.fromARGB(
+                                      53, 22, 78, 118); // Default color
+                                },
+                              ),
+                              foregroundColor:
+                                  WidgetStateProperty.all(Colors.white),
+                              overlayColor: WidgetStateProperty.all(
+                                  const Color.fromARGB(255, 42, 26, 89)),
+                              elevation: WidgetStateProperty.all(10),
+                              side: WidgetStateProperty.all(const BorderSide(
+                                  color: Color.fromARGB(78, 255, 253, 253),
+                                  width: 1)),
+                            ),
+                            segments: const <ButtonSegment<int>>[
+                              ButtonSegment<int>(
+                                value: 0,
+                                label: Text('U.S. Units'),
+                              ),
+                              ButtonSegment<int>(
+                                value: 1,
+                                label: Text('Metric Units'),
+                              ),
                             ],
-                          ),
+                            selected: <int>{isUSUnits[0] ? 0 : 1},
+                            onSelectionChanged: (Set<int> newSelection) {
+                              setState(() {
+                                resetAllvalues();
+                                isUSUnits = [
+                                  newSelection.contains(0),
+                                  newSelection.contains(1)
+                                ];
+                              });
+                            },
+                          )
                         ],
                       ),
                     ),
@@ -105,7 +177,32 @@ class _HomeScreenState extends State<HomeScreen> {
         onTap: () {
           weightController.clear();
         },
+        textAlign: TextAlign.end,
         onChanged: (svalue) => calculateBMI(),
+        style: CustomTextStyles.bigTextField,
+        decoration: const InputDecoration(
+          contentPadding: EdgeInsets.symmetric(horizontal: 10),
+          border: OutlineInputBorder(),
+        ),
+        keyboardType: TextInputType.number,
+        inputFormatters: [
+          FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+          LengthLimitingTextInputFormatter(3),
+        ],
+      ),
+    );
+  }
+
+  SizedBox getWeightKgTextField() {
+    return SizedBox(
+      width: 100,
+      child: TextField(
+        controller: weightKgController,
+        onTap: () {
+          weightKgController.clear();
+        },
+        textAlign: TextAlign.end,
+        onChanged: (svalue) => calculateBMIMetric(),
         style: CustomTextStyles.bigTextField,
         decoration: const InputDecoration(
           contentPadding: EdgeInsets.symmetric(horizontal: 10),
@@ -128,6 +225,7 @@ class _HomeScreenState extends State<HomeScreen> {
         onTap: () {
           heightInController.clear();
         },
+        textAlign: TextAlign.end,
         onChanged: (value) => calculateBMI(),
         style: CustomTextStyles.bigTextField,
         decoration: const InputDecoration(
@@ -143,6 +241,30 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  SizedBox getHeightCmTextField() {
+    return SizedBox(
+      width: 100,
+      child: TextField(
+        controller: heightCmController,
+        onTap: () {
+          heightCmController.clear();
+        },
+        textAlign: TextAlign.end,
+        onChanged: (value) => calculateBMIMetric(),
+        style: CustomTextStyles.bigTextField,
+        decoration: const InputDecoration(
+          contentPadding: EdgeInsets.symmetric(horizontal: 10),
+          border: OutlineInputBorder(),
+        ),
+        keyboardType: TextInputType.number,
+        inputFormatters: [
+          FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+          LengthLimitingTextInputFormatter(3),
+        ],
+      ),
+    );
+  }
+
   SizedBox getHeightFtTextField() {
     return SizedBox(
       width: 50,
@@ -151,6 +273,7 @@ class _HomeScreenState extends State<HomeScreen> {
         onTap: () {
           heightFtController.clear();
         },
+        textAlign: TextAlign.end,
         onChanged: (value) => calculateBMI(),
         style: CustomTextStyles.bigTextField,
         decoration: const InputDecoration(
@@ -210,6 +333,35 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       this.calculatedBMI = calculatedBMI;
       bmi = calculatedBMI.toStringAsFixed(2);
+    });
+  }
+
+  void calculateBMIMetric() {
+    if (heightCmController.text.isEmpty || weightKgController.text.isEmpty) {
+      return;
+    }
+
+    double heightCm = double.parse(heightCmController.text);
+    double weightKg = double.parse(weightKgController.text);
+
+    double heightM = heightCm / 100;
+
+    double calculatedBMI = weightKg / (heightM * heightM);
+    setState(() {
+      this.calculatedBMI = calculatedBMI;
+      bmi = calculatedBMI.toStringAsFixed(2);
+    });
+  }
+
+  void resetAllvalues() {
+    heightFtController.clear();
+    heightInController.clear();
+    heightCmController.clear();
+    weightController.clear();
+    weightKgController.clear();
+    setState(() {
+      calculatedBMI = 0.0;
+      bmi = "0.0";
     });
   }
 }
