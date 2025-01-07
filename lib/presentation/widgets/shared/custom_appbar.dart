@@ -20,8 +20,19 @@ class CustomAppBar extends StatelessWidget {
               Image.asset('assets/images/icon.png', width: 50),
               const SizedBox(width: 10),
               const Text(
-                'Light  BMI Calculator',
-                style: TextStyle(fontFamily: "Akayatelivigala", fontSize: 30),
+                'Light',
+                style: TextStyle(
+                    fontFamily: "Akayatelivigala",
+                    fontSize: 30,
+                    color: Color.fromARGB(185, 255, 255, 255),
+                    fontWeight: FontWeight.w100),
+              ),
+              const Text(
+                ' BMI Calculator',
+                style: TextStyle(
+                    fontFamily: "Akayatelivigala",
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30),
               ),
             ],
           ),

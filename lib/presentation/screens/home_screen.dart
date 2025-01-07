@@ -37,51 +37,56 @@ class _HomeScreenState extends State<HomeScreen> {
             extendBodyBehindAppBar: true,
             backgroundColor: Colors.transparent,
             appBar: PreferredSize(
-              preferredSize: const Size.fromHeight(120),
+              preferredSize: const Size.fromHeight(200),
               child: CustomPaint(
                 painter: AppBarPainter(),
                 child: const CustomAppBar(),
               ),
             ),
-            body: Padding(
-              padding: const EdgeInsets.only(top: kToolbarHeight + 40),
-              child: SingleChildScrollView(
+            body: GestureDetector(
+              onTap: () => FocusScope.of(context).requestFocus(nullFocus),
+              child: SizedBox(
+                height: double.infinity,
+                width: double.infinity,
                 child: Padding(
-                  padding: const EdgeInsets.only(top: kToolbarHeight),
-                  child: GestureDetector(
-                    onTap: () => FocusScope.of(context).requestFocus(nullFocus),
-                    child: Column(
-                      children: [
-                        GaugeBmiChart(value: calculatedBMI, bmi: bmi),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            const Text('Height: ',
-                                style: CustomTextStyles.bigTextLabel),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            getHeightFtTextField(),
-                            const Text(' ft.',
-                                style: CustomTextStyles.bigTextLabel),
-                            const SizedBox(width: 20),
-                            getHeightinTextField(),
-                            const Text(' in.',
-                                style: CustomTextStyles.bigTextLabel),
-                          ],
-                        ),
-                        const SizedBox(height: 20),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text('Weight: ',
-                                style: CustomTextStyles.bigTextLabel),
-                            weightTextField(),
-                            const Text(' lbs.',
-                                style: CustomTextStyles.bigTextLabel),
-                          ],
-                        ),
-                      ],
+                  padding: const EdgeInsets.only(top: kToolbarHeight + 40),
+                  child: SingleChildScrollView(
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: kToolbarHeight),
+                      child: Column(
+                        children: [
+                          GaugeBmiChart(value: calculatedBMI, bmi: bmi),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              const Text('Height: ',
+                                  style: CustomTextStyles.bigTextLabel),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              getHeightFtTextField(),
+                              const Text(' ft.',
+                                  style: CustomTextStyles.bigTextLabel),
+                              const SizedBox(width: 20),
+                              getHeightinTextField(),
+                              const Text(' in.',
+                                  style: CustomTextStyles.bigTextLabel),
+                            ],
+                          ),
+                          const SizedBox(height: 20),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Text('Weight: ',
+                                  style: CustomTextStyles.bigTextLabel),
+                              weightTextField(),
+                              const Text(' lbs.',
+                                  style: CustomTextStyles.bigTextLabel),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),

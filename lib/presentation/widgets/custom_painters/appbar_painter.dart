@@ -12,8 +12,15 @@ class AppBarPainter extends CustomPainter {
     path.moveTo(0, 0);
     path.lineTo(0, size.height);
     path.quadraticBezierTo(
+      size.width * 0.154,
+      size.height * 0.49,
       size.width * 0.5,
-      size.height * 0.5,
+      size.height * 0.49,
+    );
+
+    path.quadraticBezierTo(
+      size.width * 0.846,
+      size.height * 0.49,
       size.width,
       size.height,
     );

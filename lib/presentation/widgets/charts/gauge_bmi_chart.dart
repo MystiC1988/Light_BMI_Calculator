@@ -12,13 +12,13 @@ class GaugeBmiChart extends StatelessWidget {
       RadialAxis(
           minimum: 13,
           maximum: 35,
-          startAngle: 170,
-          endAngle: 10,
-          radiusFactor: 1,
+          startAngle: 160,
+          endAngle: 20,
+          radiusFactor: 1.1,
           axisLineStyle: const AxisLineStyle(
-              thickness: 0.2,
-              thicknessUnit: GaugeSizeUnit.factor,
-              cornerStyle: CornerStyle.bothCurve),
+              thickness: 80,
+              thicknessUnit: GaugeSizeUnit.logicalPixel,
+              cornerStyle: CornerStyle.bothFlat),
           showTicks: false,
           showLabels: false,
           centerY: 0.6,
@@ -29,8 +29,8 @@ class GaugeBmiChart extends StatelessWidget {
                 labelStyle: const GaugeTextStyle(
                     fontSize: 15, fontWeight: FontWeight.bold),
                 color: Colors.blue,
-                startWidth: 80,
-                endWidth: 80,
+                startWidth: 100,
+                endWidth: 100,
                 label: 'Underweight'),
             GaugeRange(
                 startValue: 18.5,
@@ -38,8 +38,8 @@ class GaugeBmiChart extends StatelessWidget {
                 labelStyle: const GaugeTextStyle(
                     fontSize: 15, fontWeight: FontWeight.bold),
                 color: const Color.fromARGB(255, 23, 179, 28),
-                startWidth: 80,
-                endWidth: 80,
+                startWidth: 100,
+                endWidth: 100,
                 label: 'Normal'),
             GaugeRange(
                 startValue: 24.9,
@@ -47,8 +47,8 @@ class GaugeBmiChart extends StatelessWidget {
                 labelStyle: const GaugeTextStyle(
                     fontSize: 15, fontWeight: FontWeight.bold),
                 color: const Color.fromARGB(255, 200, 73, 27),
-                startWidth: 80,
-                endWidth: 80,
+                startWidth: 100,
+                endWidth: 100,
                 label: 'Overweight'),
             GaugeRange(
                 startValue: 29.9,
@@ -56,8 +56,8 @@ class GaugeBmiChart extends StatelessWidget {
                 labelStyle: const GaugeTextStyle(
                     fontSize: 15, fontWeight: FontWeight.bold),
                 color: const Color.fromARGB(255, 183, 17, 5),
-                startWidth: 80,
-                endWidth: 80,
+                startWidth: 100,
+                endWidth: 100,
                 label: 'Obese')
           ],
           pointers: <GaugePointer>[
@@ -69,11 +69,25 @@ class GaugeBmiChart extends StatelessWidget {
           annotations: <GaugeAnnotation>[
             GaugeAnnotation(
                 widget: Text("BMI: $bmi",
-                    style: const TextStyle(
-                        fontSize: 30, fontWeight: FontWeight.bold)),
+                    style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                        color: getColorByValue())),
                 angle: 90,
-                positionFactor: 0.5)
+                positionFactor: 0.6)
           ])
     ]);
+  }
+
+  Color getColorByValue() {
+    if (value < 18.5) {
+      return const Color.fromARGB(255, 80, 176, 255);
+    } else if (value < 24.9) {
+      return const Color.fromARGB(255, 30, 255, 37);
+    } else if (value < 29.9) {
+      return const Color.fromARGB(255, 255, 112, 60);
+    } else {
+      return const Color.fromARGB(255, 255, 32, 16);
+    }
   }
 }
