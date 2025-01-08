@@ -302,7 +302,7 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               Icon(Icons.error, color: Colors.white),
               SizedBox(width: 10),
-              Text('Maximum height in feet is 11',
+              Text('Inches must be less than 12',
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 16,
