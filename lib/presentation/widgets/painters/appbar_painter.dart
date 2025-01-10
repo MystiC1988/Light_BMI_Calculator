@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class AppBarPainter extends CustomPainter {
+  Brightness brightness;
+  AppBarPainter({required this.brightness});
   @override
   void paint(Canvas canvas, Size size) {
     // Shadow paint
@@ -11,7 +13,19 @@ class AppBarPainter extends CustomPainter {
 
     // Main paint
     final paint = Paint()
-      ..color = const Color.fromARGB(255, 21, 14, 35)
+      ..shader = LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: brightness == Brightness.dark
+            ? [
+                const Color.fromARGB(255, 32, 15, 74),
+                const Color.fromARGB(255, 36, 19, 73),
+              ]
+            : [
+                const Color.fromARGB(255, 67, 1, 166),
+                const Color.fromARGB(255, 83, 20, 220),
+              ],
+      ).createShader(Rect.fromLTWH(0, 0, size.width, size.height))
       ..style = PaintingStyle.fill;
 
     final path = Path();

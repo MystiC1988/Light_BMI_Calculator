@@ -6,9 +6,10 @@ class Copyright extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ColorScheme colorScheme = Theme.of(context).colorScheme;
     return GestureDetector(
       onTap: () => launchUrl(Uri.parse('https://www.omv88.dev')),
-      child: const Column(
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
@@ -16,14 +17,14 @@ class Copyright extends StatelessWidget {
             style: TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.bold,
-              color: Color.fromARGB(177, 224, 224, 224),
+              color: colorScheme.secondary,
             ),
           ),
           Text(
             'by Osvaldo Martinez',
             style: TextStyle(
               fontSize: 12,
-              color: Color.fromARGB(182, 219, 219, 219),
+              color: colorScheme.secondary,
             ),
           )
         ],

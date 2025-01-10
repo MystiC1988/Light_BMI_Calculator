@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:light_bmi_calculator/presentation/blocs/theme_provider.dart';
 import 'package:light_bmi_calculator/presentation/widgets/dialogs/collaborate_dialog.dart';
 import 'package:light_bmi_calculator/presentation/widgets/dialogs/info_dialog.dart';
 
@@ -9,6 +11,7 @@ class CustomAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ColorScheme colorScheme = Theme.of(context).colorScheme;
     return AppBar(
       surfaceTintColor: Colors.transparent,
       toolbarHeight: 200,
@@ -16,28 +19,34 @@ class CustomAppBar extends StatelessWidget {
       elevation: 4,
       title: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset('assets/images/icon.png', width: 50),
-              const SizedBox(width: 10),
-              const Text(
-                'Light',
-                style: TextStyle(
-                    fontFamily: "Akayatelivigala",
-                    fontSize: 30,
-                    color: Color.fromARGB(185, 255, 255, 255),
-                    fontWeight: FontWeight.w100),
-              ),
-              const Text(
-                ' BMI Calculator',
-                style: TextStyle(
-                    fontFamily: "Akayatelivigala",
-                    fontWeight: FontWeight.bold,
-                    fontSize: 30),
-              ),
-            ],
-          ),
+          BlocBuilder<ThemeProvider, ThemeData>(
+              builder: (BuildContext context, state) {
+            return Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset('assets/images/icon.png', width: 50),
+                const SizedBox(width: 10),
+                Text(
+                  'Light',
+                  style: TextStyle(
+                      fontFamily: "Akayatelivigala",
+                      fontSize: 30,
+                      color: (state.brightness == Brightness.dark)
+                          ? colorScheme.secondary
+                          : const Color.fromARGB(180, 255, 255, 255),
+                      fontWeight: FontWeight.w100),
+                ),
+                const Text(
+                  ' BMI Calculator',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: "Akayatelivigala",
+                      fontWeight: FontWeight.bold,
+                      fontSize: 30),
+                ),
+              ],
+            );
+          }),
           SizedBox(
             height: 80,
             width: double.infinity,

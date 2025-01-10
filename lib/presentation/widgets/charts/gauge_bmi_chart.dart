@@ -4,7 +4,12 @@ import 'package:syncfusion_flutter_gauges/gauges.dart';
 class GaugeBmiChart extends StatelessWidget {
   final double value;
   final String bmi;
-  const GaugeBmiChart({super.key, required this.value, required this.bmi});
+  final Brightness brightness;
+  const GaugeBmiChart(
+      {super.key,
+      required this.value,
+      required this.bmi,
+      required this.brightness});
 
   @override
   Widget build(BuildContext context) {
@@ -63,6 +68,13 @@ class GaugeBmiChart extends StatelessWidget {
           pointers: <GaugePointer>[
             NeedlePointer(
               value: value,
+              knobStyle: KnobStyle(
+                  color: (brightness == Brightness.dark)
+                      ? const Color.fromARGB(255, 255, 255, 255)
+                      : const Color.fromARGB(255, 33, 33, 33)),
+              needleColor: (brightness == Brightness.dark)
+                  ? const Color.fromARGB(255, 255, 255, 255)
+                  : const Color.fromARGB(255, 0, 0, 0),
               enableAnimation: true,
             )
           ],

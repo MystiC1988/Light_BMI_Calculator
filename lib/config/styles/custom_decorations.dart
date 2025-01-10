@@ -11,4 +11,15 @@ class CustomDecorations {
       ],
     ),
   );
+
+  static const BoxDecoration bgLightGradientDecoration = BoxDecoration(
+    gradient: RadialGradient(
+      center: Alignment.topLeft,
+      radius: 2.0,
+      colors: [
+        Color.fromARGB(255, 240, 227, 255),
+        Color.fromARGB(255, 228, 234, 255),
+      ],
+    ),
+  );
 }
