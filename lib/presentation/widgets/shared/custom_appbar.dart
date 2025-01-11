@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:light_bmi_calculator/presentation/blocs/collaborate_provider.dart';
 import 'package:light_bmi_calculator/presentation/blocs/theme_provider.dart';
 import 'package:light_bmi_calculator/presentation/widgets/dialogs/collaborate_dialog.dart';
 import 'package:light_bmi_calculator/presentation/widgets/dialogs/info_dialog.dart';
@@ -50,7 +51,7 @@ class CustomAppBar extends StatelessWidget {
             child: Stack(
               children: [
                 Positioned(
-                  bottom: 10,
+                  bottom: 0,
                   left: 20,
                   child: SizedBox(
                     height: 30,
@@ -66,27 +67,21 @@ class CustomAppBar extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  bottom: 10,
+                  bottom: 0,
                   right: 20,
                   child: SizedBox(
                     height: 30,
                     width: 30,
-                    child: Pulse(
-                      animate: false,
-                      infinite: true,
-                      duration: const Duration(seconds: 2),
-                      child: IconButton(
-                        iconSize: 30,
-                        splashColor: Colors.black,
-                        splashRadius: 30,
-                        padding: EdgeInsets.zero,
-                        icon: const Icon(Icons.favorite_outline,
-                            color: Colors.pink),
-                        onPressed: () {
-                          showCollaborationDialog(context);
-                        },
-                      ),
-                    ),
+                    child: BlocBuilder<CollaborateProvider, bool>(
+                        builder: (BuildContext context, state) {
+                      return (state)
+                          ? Pulse(
+                              infinite: true,
+                              duration: const Duration(seconds: 2),
+                              child: showCollaborateDialogBtn(context),
+                            )
+                          : showCollaborateDialogBtn(context);
+                    }),
                   ),
                 ),
               ],
@@ -97,6 +92,20 @@ class CustomAppBar extends StatelessWidget {
           )
         ],
       ),
+    );
+  }
+
+  IconButton showCollaborateDialogBtn(BuildContext context) {
+    return IconButton(
+      iconSize: 30,
+      splashColor: Colors.black,
+      splashRadius: 30,
+      padding: EdgeInsets.zero,
+      icon: const Icon(Icons.favorite_outline, color: Colors.pink),
+      onPressed: () {
+        context.read<CollaborateProvider>().setCollaboratedShowed();
+        showCollaborationDialog(context);
+      },
     );
   }
 

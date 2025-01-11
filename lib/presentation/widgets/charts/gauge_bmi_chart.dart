@@ -102,7 +102,7 @@ class GaugeBmiChart extends StatelessWidget {
                 verticalAlignment: GaugeAlignment.far,
                 widget: Icon(Icons.info, color: Colors.white),
                 angle: 235,
-                positionFactor: 0.78),
+                positionFactor: 0.76),
             const GaugeAnnotation(
                 verticalAlignment: GaugeAlignment.far,
                 widget: Icon(Icons.info, color: Colors.white),
@@ -113,7 +113,7 @@ class GaugeBmiChart extends StatelessWidget {
                 verticalAlignment: GaugeAlignment.far,
                 widget: Icon(Icons.info, color: Colors.white),
                 angle: 345,
-                positionFactor: 0.78)
+                positionFactor: 0.77)
           ])
     ]);
   }
