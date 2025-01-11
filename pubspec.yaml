@@ -1,12 +1,13 @@
 name: light_bmi_calculator
 description: "Simple BMI Calculator for mobile devices"
 publish_to: "none"
-version: 1.0.1+3
+version: 1.0.2+1
 
 environment:
   sdk: ^3.5.4
 
 dependencies:
+  animate_do: ^3.3.4
   bloc: ^8.1.4
   cupertino_icons: ^1.0.8
   equatable: ^2.0.7

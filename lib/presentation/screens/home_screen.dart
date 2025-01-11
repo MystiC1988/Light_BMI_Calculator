@@ -46,19 +46,14 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Scaffold(
               extendBodyBehindAppBar: true,
               backgroundColor: Colors.transparent,
-              appBar: PreferredSize(
-                preferredSize: const Size.fromHeight(200),
-                child: CustomPaint(
-                  painter: AppBarPainter(brightness: state.brightness),
-                  child: const CustomAppBar(),
-                ),
+              appBar: const PreferredSize(
+                preferredSize: Size.fromHeight(200),
+                child: CustomAppBar(),
               ),
               body: GestureDetector(
                 onTap: () => FocusScope.of(context).requestFocus(nullFocus),
-                child: SizedBox(
-                  height: double.infinity,
-                  width: double.infinity,
-                  child: Padding(
+                child: Stack(children: [
+                  Padding(
                     padding: const EdgeInsets.only(top: kToolbarHeight + 40),
                     child: SingleChildScrollView(
                       physics: const AlwaysScrollableScrollPhysics(),
@@ -191,7 +186,16 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                   ),
-                ),
+                  IgnorePointer(
+                    ignoring: true,
+                    child: CustomPaint(
+                        painter: AppBarPainter(brightness: state.brightness),
+                        child: const SizedBox(
+                          height: 280,
+                          width: double.infinity,
+                        )),
+                  ),
+                ]),
               ),
               persistentFooterButtons: const [Center(child: Copyright())],
             )),

@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:light_bmi_calculator/presentation/blocs/theme_provider.dart';
@@ -12,12 +13,8 @@ class CustomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ColorScheme colorScheme = Theme.of(context).colorScheme;
-    return AppBar(
-      surfaceTintColor: Colors.transparent,
-      toolbarHeight: 200,
-      backgroundColor: Colors.transparent,
-      elevation: 4,
-      title: Column(
+    return SafeArea(
+      child: Column(
         children: [
           BlocBuilder<ThemeProvider, ThemeData>(
               builder: (BuildContext context, state) {
@@ -54,7 +51,7 @@ class CustomAppBar extends StatelessWidget {
               children: [
                 Positioned(
                   bottom: 10,
-                  left: 5,
+                  left: 20,
                   child: SizedBox(
                     height: 30,
                     width: 30,
@@ -70,18 +67,25 @@ class CustomAppBar extends StatelessWidget {
                 ),
                 Positioned(
                   bottom: 10,
-                  right: 5,
+                  right: 20,
                   child: SizedBox(
                     height: 30,
                     width: 30,
-                    child: IconButton(
-                      iconSize: 30,
-                      padding: EdgeInsets.zero,
-                      icon: const Icon(Icons.favorite_outline,
-                          color: Colors.pink),
-                      onPressed: () {
-                        showCollaborationDialog(context);
-                      },
+                    child: Pulse(
+                      animate: false,
+                      infinite: true,
+                      duration: const Duration(seconds: 2),
+                      child: IconButton(
+                        iconSize: 30,
+                        splashColor: Colors.black,
+                        splashRadius: 30,
+                        padding: EdgeInsets.zero,
+                        icon: const Icon(Icons.favorite_outline,
+                            color: Colors.pink),
+                        onPressed: () {
+                          showCollaborationDialog(context);
+                        },
+                      ),
                     ),
                   ),
                 ),
