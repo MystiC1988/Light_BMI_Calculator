@@ -8,6 +8,7 @@ import 'package:light_bmi_calculator/presentation/widgets/charts/gauge_bmi_chart
 import 'package:light_bmi_calculator/presentation/widgets/painters/appbar_painter.dart';
 import 'package:light_bmi_calculator/presentation/widgets/shared/copyright.dart';
 import 'package:light_bmi_calculator/presentation/widgets/shared/custom_appbar.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -69,30 +70,43 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ? Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
-                                      const Text('Height: ',
+                                      Text(
+                                          AppLocalizations.of(context)!
+                                              .heightLabel,
                                           style: CustomTextStyles.bigTextLabel),
                                       const SizedBox(
                                         width: 10,
                                       ),
                                       getHeightFtTextField(),
-                                      const Text(' ft.',
+                                      const SizedBox(width: 10),
+                                      Text(
+                                          AppLocalizations.of(context)!
+                                              .feetAbbreviation,
                                           style: CustomTextStyles.bigTextLabel),
                                       const SizedBox(width: 20),
                                       getHeightinTextField(),
-                                      const Text(' in.',
+                                      const SizedBox(width: 10),
+                                      Text(
+                                          AppLocalizations.of(context)!
+                                              .inchesAbbreviation,
                                           style: CustomTextStyles.bigTextLabel),
                                     ],
                                   )
                                 : Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      const Text('Height: ',
+                                      Text(
+                                          AppLocalizations.of(context)!
+                                              .heightLabel,
                                           style: CustomTextStyles.bigTextLabel),
                                       const SizedBox(
                                         width: 10,
                                       ),
                                       getHeightCmTextField(),
-                                      const Text(' cm.',
+                                      const SizedBox(width: 10),
+                                      Text(
+                                          AppLocalizations.of(context)!
+                                              .centimetresAbbreviation,
                                           style: CustomTextStyles.bigTextLabel),
                                     ],
                                   ),
@@ -101,20 +115,32 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ? Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      const Text('Weight: ',
+                                      Text(
+                                          AppLocalizations.of(context)!
+                                              .weightLabel,
                                           style: CustomTextStyles.bigTextLabel),
+                                      const SizedBox(width: 10),
                                       weightTextField(),
-                                      const Text(' lbs.',
+                                      const SizedBox(width: 10),
+                                      Text(
+                                          AppLocalizations.of(context)!
+                                              .poundsAbbreviation,
                                           style: CustomTextStyles.bigTextLabel),
                                     ],
                                   )
                                 : Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      const Text('Weight: ',
+                                      Text(
+                                          AppLocalizations.of(context)!
+                                              .weightLabel,
                                           style: CustomTextStyles.bigTextLabel),
+                                      const SizedBox(width: 10),
                                       getWeightKgTextField(),
-                                      const Text(' kg.',
+                                      const SizedBox(width: 10),
+                                      Text(
+                                          AppLocalizations.of(context)!
+                                              .kilogramsAbbreviation,
                                           style: CustomTextStyles.bigTextLabel),
                                     ],
                                   ),
@@ -149,14 +175,17 @@ class _HomeScreenState extends State<HomeScreen> {
                                     color: Color.fromARGB(78, 255, 253, 253),
                                     width: 1)),
                               ),
-                              segments: const <ButtonSegment<int>>[
+                              segments: <ButtonSegment<int>>[
                                 ButtonSegment<int>(
                                   value: 0,
-                                  label: Text('U.S. Units'),
+                                  label: Text(
+                                    AppLocalizations.of(context)!.usUnitsLabel,
+                                  ),
                                 ),
                                 ButtonSegment<int>(
                                   value: 1,
-                                  label: Text('Metric Units'),
+                                  label: Text(AppLocalizations.of(context)!
+                                      .metricUnitsLabel),
                                 ),
                               ],
                               selected: <int>{isUSUnits[0] ? 0 : 1},

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class GaugeBmiChart extends StatelessWidget {
   final double value;
@@ -38,7 +39,7 @@ class GaugeBmiChart extends StatelessWidget {
                 color: Colors.blue,
                 startWidth: 100,
                 endWidth: 100,
-                label: 'Underweight'),
+                label: AppLocalizations.of(context)!.underweightLabel),
             GaugeRange(
                 startValue: 18.5,
                 endValue: 24.9,
@@ -47,7 +48,7 @@ class GaugeBmiChart extends StatelessWidget {
                 color: const Color.fromARGB(255, 23, 179, 28),
                 startWidth: 100,
                 endWidth: 100,
-                label: 'Normal'),
+                label: AppLocalizations.of(context)!.normalLabel),
             GaugeRange(
                 startValue: 24.9,
                 endValue: 29.9,
@@ -56,7 +57,7 @@ class GaugeBmiChart extends StatelessWidget {
                 color: const Color.fromARGB(255, 200, 73, 27),
                 startWidth: 100,
                 endWidth: 100,
-                label: 'Overweight'),
+                label: AppLocalizations.of(context)!.overweightLabel),
             GaugeRange(
                 startValue: 29.9,
                 endValue: 49,
@@ -65,7 +66,7 @@ class GaugeBmiChart extends StatelessWidget {
                 color: const Color.fromARGB(255, 183, 17, 5),
                 startWidth: 100,
                 endWidth: 100,
-                label: 'Obese')
+                label: AppLocalizations.of(context)!.obeseLabel)
           ],
           pointers: <GaugePointer>[
             NeedlePointer(
@@ -82,7 +83,7 @@ class GaugeBmiChart extends StatelessWidget {
           ],
           annotations: <GaugeAnnotation>[
             GaugeAnnotation(
-                widget: Text("BMI: $bmi",
+                widget: Text("${AppLocalizations.of(context)!.bmiLabel} $bmi",
                     style: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
@@ -90,30 +91,30 @@ class GaugeBmiChart extends StatelessWidget {
                             ? getDarkColorByValue()
                             : getLightColorByValue())),
                 angle: 90,
-                positionFactor: 0.65),
+                positionFactor: 0.40),
             const GaugeAnnotation(
                 horizontalAlignment: GaugeAlignment.far,
                 verticalAlignment: GaugeAlignment.far,
                 widget: Icon(Icons.info, color: Colors.white),
                 angle: 175,
-                positionFactor: 0.78),
+                positionFactor: 0.54),
             const GaugeAnnotation(
                 horizontalAlignment: GaugeAlignment.far,
                 verticalAlignment: GaugeAlignment.far,
                 widget: Icon(Icons.info, color: Colors.white),
                 angle: 235,
-                positionFactor: 0.76),
+                positionFactor: 0.52),
             const GaugeAnnotation(
                 verticalAlignment: GaugeAlignment.far,
                 widget: Icon(Icons.info, color: Colors.white),
                 angle: 283,
-                positionFactor: 0.78),
+                positionFactor: 0.53),
             const GaugeAnnotation(
                 horizontalAlignment: GaugeAlignment.near,
                 verticalAlignment: GaugeAlignment.far,
                 widget: Icon(Icons.info, color: Colors.white),
                 angle: 345,
-                positionFactor: 0.77)
+                positionFactor: 0.53)
           ])
     ]);
   }
@@ -145,112 +146,53 @@ class GaugeBmiChart extends StatelessWidget {
   void showRangeInformation(BuildContext context, {required double value}) {
     if (value < 18.5) {
       // Underweight
-      String explanation = """
-A BMI below 18.5 indicates underweight. Possible causes include:
-- Insufficient caloric intake
-- High metabolism
-- Certain medical conditions
-
-Recommendations:
-• Increase caloric intake with nutrient-rich foods
-• Add healthy fats to your diet (nuts, avocados, olive oil)
-• Consider strength training to build muscle mass
-• Consult a healthcare provider to rule out underlying conditions
-
-Disclaimer:
-This information is intended for general knowledge only and is not a substitute for professional medical advice. 
-Please consult a medical professional for an accurate diagnosis and treatment.
-""";
+      String explanation =
+          AppLocalizations.of(context)!.underweightBmiExplanation;
       // WHO Fact Sheet on Malnutrition (covers undernutrition/underweight)
       String link =
           "https://www.who.int/news-room/fact-sheets/detail/malnutrition";
 
       showInfoDialog(
         context,
-        title: "Underweight",
+        title: AppLocalizations.of(context)!.underweightLabel,
         content: explanation,
         link: link,
       );
     } else if (value < 24.9) {
       // Normal Weight
-      String explanation = """
-A BMI between 18.5 and 24.9 indicates a healthy weight. This generally means:
-- Your weight is proportional to your height
-- Lower risk of weight-related health issues
-- Optimal range for most adults
-
-Recommendations:
-• Maintain a balanced diet
-• Engage in regular exercise (at least 150 minutes per week)
-• Schedule regular health check-ups
-• Continue healthy lifestyle habits
-
-Disclaimer:
-This information is intended for general knowledge only and is not a substitute for professional medical advice. 
-Please consult a medical professional for an accurate diagnosis and treatment.
-""";
+      String explanation = AppLocalizations.of(context)!.normalBmiExplanation;
       // CDC: Healthy Weight, Nutrition, and Physical Activity
       String link = "https://www.cdc.gov/healthyweight/index.html";
 
       showInfoDialog(
         context,
-        title: "Normal Weight",
+        title: AppLocalizations.of(context)!.normalLabel,
         content: explanation,
         link: link,
       );
     } else if (value < 29.9) {
       // Overweight
-      String explanation = """
-A BMI between 25 and 29.9 indicates overweight. This may lead to:
-- Increased risk of heart disease
-- Higher blood pressure
-- Elevated risk of type 2 diabetes
-
-Recommendations:
-• Reduce caloric intake moderately
-• Increase physical activity
-• Focus on portion control
-• Consider consulting a nutritionist or dietitian
-
-Disclaimer:
-This information is intended for general knowledge only and is not a substitute for professional medical advice. 
-Please consult a medical professional for an accurate diagnosis and treatment.
-""";
+      String explanation =
+          AppLocalizations.of(context)!.overweightBmiExplanation;
       // WHO Fact Sheet on Obesity and Overweight
       String link =
           "https://www.who.int/news-room/fact-sheets/detail/obesity-and-overweight";
 
       showInfoDialog(
         context,
-        title: "Overweight",
+        title: AppLocalizations.of(context)!.overweightLabel,
         content: explanation,
         link: link,
       );
     } else {
       // Obesity
-      String explanation = """
-A BMI of 30 or greater indicates obesity. This significantly increases the risk of:
-- Heart disease
-- Type 2 diabetes
-- High blood pressure
-- Certain types of cancer
-
-Recommendations:
-• Consult a healthcare provider for a structured weight loss plan
-• Engage in a regular exercise program
-• Consider professional support (nutritionist, therapist)
-• Monitor progress with regular check-ups
-
-Disclaimer:
-This information is intended for general knowledge only and is not a substitute for professional medical advice. 
-Please consult a medical professional for an accurate diagnosis and treatment.
-""";
+      String explanation = AppLocalizations.of(context)!.obesityBmiExplanation;
       // CDC: Defining Adult Overweight & Obesity
       String link = "https://www.cdc.gov/obesity/php/about/index.html";
 
       showInfoDialog(
         context,
-        title: "Obesity",
+        title: AppLocalizations.of(context)!.obeseLabel,
         content: explanation,
         link: link,
       );
@@ -271,7 +213,8 @@ Please consult a medical professional for an accurate diagnosis and treatment.
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(content),
-                const Text("Reference: "),
+                const SizedBox(height: 10),
+                Text(AppLocalizations.of(context)!.sourcesHeading),
                 GestureDetector(
                   onTap: () async {
                     final url = Uri.parse(link);
@@ -293,7 +236,7 @@ Please consult a medical professional for an accurate diagnosis and treatment.
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: const Text("Close"),
+              child: Text(AppLocalizations.of(context)!.closeText),
             )
           ],
         );

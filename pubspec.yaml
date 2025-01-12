@@ -1,7 +1,7 @@
 name: light_bmi_calculator
 description: "Simple BMI Calculator for mobile devices"
 publish_to: "none"
-version: 1.0.2+1
+version: 1.0.2+2
 
 environment:
   sdk: ^3.5.4
@@ -15,10 +15,13 @@ dependencies:
     sdk: flutter
   flutter_bloc: ^8.1.6
   flutter_launcher_icons: ^0.14.2
+  flutter_localizations:
+    sdk: flutter
   get_it: ^8.0.3
+  intl: ^0.19.0
   shared_preferences: ^2.3.5
-  syncfusion_flutter_core: ^23.1.44
-  syncfusion_flutter_gauges: ^23.1.44
+  syncfusion_flutter_core: ^27.2.5
+  syncfusion_flutter_gauges: ^27.2.5
   url_launcher: ^6.3.1
 
 dev_dependencies:
@@ -27,6 +30,7 @@ dev_dependencies:
     sdk: flutter
 
 flutter:
+  generate: true
   uses-material-design: true
   fonts:
     - family: Akayatelivigala

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:light_bmi_calculator/l10n/l10n.dart';
 import 'package:light_bmi_calculator/presentation/blocs/collaborate_provider.dart';
 import 'package:light_bmi_calculator/presentation/blocs/theme_provider.dart';
 import 'package:light_bmi_calculator/presentation/screens/home_screen.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,7 +30,10 @@ class MyApp extends StatelessWidget {
       child: BlocBuilder<ThemeProvider, ThemeData>(
         builder: (BuildContext context, state) {
           return MaterialApp(
-            title: 'Flutter Demo',
+            supportedLocales: L10n.all,
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            locale: const Locale('ko'),
+            title: 'Light BMI Calculator',
             theme: state,
             home: const HomeScreen(),
             debugShowCheckedModeBanner: false,

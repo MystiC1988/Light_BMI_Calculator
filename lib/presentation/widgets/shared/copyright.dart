@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Copyright extends StatelessWidget {
   const Copyright({super.key});
@@ -21,7 +22,7 @@ class Copyright extends StatelessWidget {
             ),
           ),
           Text(
-            'by Osvaldo Martinez',
+            '${AppLocalizations.of(context)!.byText} Osvaldo Martinez',
             style: TextStyle(
               fontSize: 12,
               color: colorScheme.secondary,

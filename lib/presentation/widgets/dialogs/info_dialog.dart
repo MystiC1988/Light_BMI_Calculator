@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class InfoDialog extends StatelessWidget {
   const InfoDialog({super.key});
@@ -28,42 +29,42 @@ class InfoDialog extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            "BMI Calculation Explanation",
-            style: TextStyle(
+          Text(
+            AppLocalizations.of(context)!.bmiCalculationExplanationTitle,
+            style: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 18,
             ),
           ),
           const SizedBox(height: 10),
-          const Text(
-            "The Body Mass Index (BMI) is a standard measure used to evaluate an individual's weight status. This app uses the following internationally recognized formulas:",
-            style: TextStyle(fontSize: 14),
+          Text(
+            AppLocalizations.of(context)!.bodyMassIndexExplanation,
+            style: const TextStyle(fontSize: 14),
           ),
           const SizedBox(height: 10),
-          const Text(
-            "1. Metric Formula:",
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+          Text(
+            AppLocalizations.of(context)!.metricFormulaHeading,
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
           ),
           const SizedBox(height: 5),
-          const Text(
-            "BMI = weight (kg) / height² (m)",
-            style: TextStyle(fontSize: 14),
+          Text(
+            AppLocalizations.of(context)!.metricFormulaDetail,
+            style: const TextStyle(fontSize: 14),
           ),
           const SizedBox(height: 10),
-          const Text(
-            "2. US Units Formula:",
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+          Text(
+            AppLocalizations.of(context)!.usUnitsFormulaHeading,
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
           ),
           const SizedBox(height: 5),
-          const Text(
-            "BMI = (weight (lbs) × 703) / height² (in)",
-            style: TextStyle(fontSize: 14),
+          Text(
+            AppLocalizations.of(context)!.usUnitsFormulaDetail,
+            style: const TextStyle(fontSize: 14),
           ),
           const SizedBox(height: 15),
-          const Text(
-            "Sources:",
-            style: TextStyle(
+          Text(
+            AppLocalizations.of(context)!.sourcesHeading,
+            style: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 14,
             ),
@@ -71,9 +72,9 @@ class InfoDialog extends StatelessWidget {
           const SizedBox(height: 5),
           GestureDetector(
             onTap: () => _launchURL(whoUrl, context),
-            child: const Text(
-              "World Health Organization (WHO)",
-              style: TextStyle(
+            child: Text(
+              AppLocalizations.of(context)!.whoSource,
+              style: const TextStyle(
                 color: Colors.blue,
                 decoration: TextDecoration.underline,
               ),
@@ -82,9 +83,9 @@ class InfoDialog extends StatelessWidget {
           const SizedBox(height: 5),
           GestureDetector(
             onTap: () => _launchURL(cdcUrl, context),
-            child: const Text(
-              "Centers for Disease Control and Prevention (CDC)",
-              style: TextStyle(
+            child: Text(
+              AppLocalizations.of(context)!.cdcSource,
+              style: const TextStyle(
                 color: Colors.blue,
                 decoration: TextDecoration.underline,
               ),
