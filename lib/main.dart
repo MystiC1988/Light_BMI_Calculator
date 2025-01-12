@@ -32,7 +32,16 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             supportedLocales: L10n.all,
             localizationsDelegates: AppLocalizations.localizationsDelegates,
-            locale: const Locale('ko'),
+            localeResolutionCallback: (locale, supportedLocales) {
+              // Check if the current device locale is supported
+              for (var supportedLocale in supportedLocales) {
+                if (supportedLocale.languageCode == locale?.languageCode) {
+                  return supportedLocale;
+                }
+              }
+              // If device locale not supported, use first from the list (English)
+              return supportedLocales.first;
+            },
             title: 'Light BMI Calculator',
             theme: state,
             home: const HomeScreen(),

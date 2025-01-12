@@ -1,10 +1,10 @@
-# Simple BMI Calculator
+# Light BMI Calculator
 
 A simple and user-friendly Body Mass Index (BMI) calculator mobile application built with Flutter.
 
 ## Description
 
-Simple BMI Calculator is an easy-to-use application that helps users calculate and track their Body Mass Index. The app provides a clean interface where users can input their height and weight to get instant BMI results.
+Light BMI Calculator is an easy-to-use application that helps users calculate and track their Body Mass Index. The app provides a clean interface where users can input their height and weight to get instant BMI results.
 
 ## Features
 
@@ -20,8 +20,8 @@ Simple BMI Calculator is an easy-to-use application that helps users calculate a
 1. Download from the App Store/Google Play Store
 2. Or build from source:
    ```bash
-   git clone https://github.com:MystiC1988/Simple_BMI_Calculator.git
-   cd simple_bmi_calculator
+   git clone git@github.com:MystiC1988/Light_BMI_Calculator.git
+   cd Light_BMI_Calculator
    flutter pub get
    flutter run
    ```
