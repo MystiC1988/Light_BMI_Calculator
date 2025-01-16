@@ -15,40 +15,49 @@ Light BMI Calculator is an easy-to-use application that helps users calculate an
 - Instant results with BMI classification
 - Clean and modern design
 
-## Installation
+## App Availability
 
-1. Download from the App Store/Google Play Store
-2. Or build from source:
-   ```bash
+1. iOS (App Store):  
+   https://apps.apple.com/us/app/light-bmi-calculator/id6740174361
+2. Not yet on Play Store due to laziness, but coming soon.
+
+## For Developers
+
+1. Clone this repo:
+   ```
    git clone git@github.com:MystiC1988/Light_BMI_Calculator.git
    cd Light_BMI_Calculator
    flutter pub get
    ```
-3. Create a `.env` file in the root project directory with:
+2. Create a `.env` file in the project root:
    ```
    IOS_REVENUECAT_API_KEY=ios_api_key
    ANDROID_REVENUECAT_API_KEY=android_api_key
    ```
-4. Run the app:
-   ```bash
+3. Run locally:
+   ```
    flutter run
    ```
 
 ## Requirements
 
-- Flutter SDK
-- iOS 11.0+ / Android 5.0+
-- Compatible with iPhone, iPad and Android devices
+- Flutter SDK (latest)
+- iOS 12.0+ / Android 6.0+
+
+## Screenshots
+
+<p float="left">
+   <img src="assets/screenshots/IMG_4177.PNG" alt="Screenshot 1" width="140" />
+   <img src="assets/screenshots/IMG_4178.PNG" alt="Screenshot 2" width="140" />
+   <img src="assets/screenshots/IMG_4179.PNG" alt="Screenshot 3" width="140" />
+   <img src="assets/screenshots/IMG_4180.PNG" alt="Screenshot 4" width="140" />
+   <img src="assets/screenshots/IMG_4181.PNG" alt="Screenshot 5" width="140" />
+</p>
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Open a pull request or file an issue on GitHub.
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Contact
-
-If you have any questions or feedback, please open an issue on GitHub.
-
+MIT License. See LICENSE file for details.
