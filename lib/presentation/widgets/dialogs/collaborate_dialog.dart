@@ -1,22 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:purchases_ui_flutter/purchases_ui_flutter.dart';
 
 class CollaborateDialog extends StatelessWidget {
   const CollaborateDialog({super.key});
-
-  // Link to your Ko-fi page
-  final String koFiUrl = "https://ko-fi.com/omv88";
-
-  // Method to launch URLs
-  void _launchURL(String url) async {
-    final uri = Uri.parse(url);
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +32,89 @@ class CollaborateDialog extends StatelessWidget {
           const SizedBox(height: 15),
           Center(
             child: ElevatedButton.icon(
-              onPressed: () => _launchURL(koFiUrl),
+              onPressed: () async {
+                var scaffold = ScaffoldMessenger.of(context);
+                var navigator = Navigator.of(context);
+                var strings = AppLocalizations.of(context);
+                Navigator.of(context).pop();
+                final PaywallResult result =
+                    await RevenueCatUI.presentPaywall(displayCloseButton: true);
+                if (result == PaywallResult.purchased) {
+                  scaffold.showSnackBar(
+                    SnackBar(
+                      content: Row(
+                        children: [
+                          const Icon(Icons.favorite, color: Colors.white),
+                          const SizedBox(width: 8),
+                          Flexible(
+                            child: Text(
+                              strings!.thankyouMessage,
+                              style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 4,
+                            ),
+                          ),
+                        ],
+                      ),
+                      backgroundColor: Colors.green,
+                      duration: const Duration(seconds: 2),
+                    ),
+                  );
+                }
+                if (result == PaywallResult.error) {
+                  scaffold.showSnackBar(
+                    SnackBar(
+                      content: Row(
+                        children: [
+                          const Icon(Icons.error_outline, color: Colors.white),
+                          const SizedBox(width: 8),
+                          Flexible(
+                            child: Text(
+                              strings!.errorMessage,
+                              style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 4,
+                            ),
+                          ),
+                        ],
+                      ),
+                      backgroundColor: Colors.red,
+                      duration: const Duration(seconds: 2),
+                    ),
+                  );
+                }
+                if (result == PaywallResult.cancelled) {
+                  scaffold.showSnackBar(
+                    SnackBar(
+                      content: Row(
+                        children: [
+                          const Icon(Icons.handshake, color: Colors.white),
+                          const SizedBox(width: 8),
+                          Flexible(
+                            child: Text(
+                              strings!.canceledMessage,
+                              style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 4,
+                            ),
+                          ),
+                        ],
+                      ),
+                      backgroundColor: Colors.blue,
+                      duration: const Duration(seconds: 2),
+                    ),
+                  );
+                }
+              },
               icon: const Icon(Icons.coffee_rounded),
               label:
                   Text(AppLocalizations.of(context)!.supportWithCoffeeButton),

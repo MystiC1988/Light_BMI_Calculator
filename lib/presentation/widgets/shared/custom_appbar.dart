@@ -115,7 +115,7 @@ class CustomAppBar extends StatelessWidget {
       context: context,
       builder: (context) => AlertDialog(
         title: Text(AppLocalizations.of(context)!.supportDialogTitle),
-        content: const CollaborateDialog(),
+        content: CollaborateDialog(),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),

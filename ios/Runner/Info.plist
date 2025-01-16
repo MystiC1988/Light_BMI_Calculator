@@ -43,5 +43,12 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
+	<key>StoreKit</key>
+	<array>
+    	<dict>
+        	<key>SKPaymentQueue</key>
+        <true/>
+    </dict>
+</array>
 </dict>
 </plist>
