@@ -1,0 +1,141 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
+import 'app_localizations.dart';
+
+// ignore_for_file: type=lint
+
+/// The translations for Korean (`ko`).
+class AppLocalizationsKo extends AppLocalizations {
+  AppLocalizationsKo([String locale = 'ko']) : super(locale);
+
+  @override
+  String get underweightLabel => '저체중';
+
+  @override
+  String get normalLabel => '정상';
+
+  @override
+  String get overweightLabel => '과체중';
+
+  @override
+  String get obeseLabel => '비만';
+
+  @override
+  String get heightLabel => '키:';
+
+  @override
+  String get bmiLabel => 'BMI:';
+
+  @override
+  String get feetAbbreviation => 'ft';
+
+  @override
+  String get inchesAbbreviation => 'in';
+
+  @override
+  String get centimetresAbbreviation => 'cm';
+
+  @override
+  String get weightLabel => '몸무게:';
+
+  @override
+  String get poundsAbbreviation => 'lbs';
+
+  @override
+  String get kilogramsAbbreviation => 'kg';
+
+  @override
+  String get byText => '제작자';
+
+  @override
+  String get closeText => '닫기';
+
+  @override
+  String get usUnitsLabel => '미국 단위';
+
+  @override
+  String get metricUnitsLabel => '미터법 단위';
+
+  @override
+  String get bmiCalculationExplanationTitle => 'BMI 계산 설명';
+
+  @override
+  String get bmiCalculationExplanationDialogTitle => 'BMI 계산에 대하여';
+
+  @override
+  String get bodyMassIndexExplanation =>
+      '체질량지수(BMI)는 개인의 체중 상태를 평가하기 위해 사용되는 표준 지표입니다. 이 앱은 국제적으로 인정된 다음 공식들을 사용합니다:';
+
+  @override
+  String get metricFormulaHeading => '1. 미터법 공식:';
+
+  @override
+  String get metricFormulaDetail => 'BMI = 체중(kg) / 키²(m)';
+
+  @override
+  String get usUnitsFormulaHeading => '2. 미국 단위 공식:';
+
+  @override
+  String get usUnitsFormulaDetail => 'BMI = (체중(lbs) × 703) / 키²(in)';
+
+  @override
+  String get sourcesHeading => '출처:';
+
+  @override
+  String get whoSource => '세계보건기구 (WHO)';
+
+  @override
+  String get cdcSource => '미국 질병통제예방센터 (CDC)';
+
+  @override
+  String get heyThereGreeting => '안녕하세요! 👋';
+
+  @override
+  String get supportDialogTitle => '개발 지원';
+
+  @override
+  String get aboutDevIntro =>
+      '저는 열정적인 프리랜서 소프트웨어 개발자로, 모두를 위한 무료/오픈 솔루션을 만드는 것을 좋아합니다. 그러나 이러한 앱을 개발하고 유지 보수하는 데는 시간과 자원이 필요합니다.';
+
+  @override
+  String get supportRequest =>
+      '이 앱이 마음에 드셨다면, 개선 및 이와 같은 도구의 추가 개발을 돕기 위해 커피 한 잔을 후원해 주시길 고려해 주세요. 귀하의 지원에 진심으로 감사드립니다!';
+
+  @override
+  String get supportWithCoffeeButton => '커피로 지원하기';
+
+  @override
+  String get underweightBmiExplanation =>
+      'BMI가 18.5 미만이면 저체중을 의미합니다. 가능한 원인으로는:\n- 칼로리 섭취 부족\n- 빠른 신진대사\n- 특정 의학적 상태\n\n권장 사항:\n• 영양가 높은 음식을 섭취하여 칼로리 섭취 늘리기\n• 견과류, 아보카도, 올리브 오일 등 건강한 지방을 식단에 추가하기\n• 근력 운동을 고려하여 근육량 늘리기\n• 기저 질환이 없는지 확인하기 위해 전문의와 상담\n\n면책 조항:\n이 정보는 일반적인 참고용이며 전문적인 의학적 조언을 대체하지 않습니다.\n정확한 진단과 치료를 위해 의료 전문가와 상의하시기 바랍니다.';
+
+  @override
+  String get normalBmiExplanation =>
+      'BMI가 18.5 이상 24.9 이하이면 정상 체중을 의미합니다. 일반적으로:\n- 키에 적절한 체중\n- 체중 관련 질환 위험도 낮음\n- 대부분 성인에게 이상적인 범위\n\n권장 사항:\n• 균형 잡힌 식단 유지하기\n• 규칙적인 운동 실시(주당 최소 150분 이상)\n• 정기 건강 검진 받기\n• 건강한 생활 습관을 지속하기\n\n면책 조항:\n이 정보는 일반적인 참고용이며 전문적인 의학적 조언을 대체하지 않습니다.\n정확한 진단과 치료를 위해 의료 전문가와 상의하시기 바랍니다.';
+
+  @override
+  String get overweightBmiExplanation =>
+      'BMI가 25 이상 29.9 이하이면 과체중으로 간주됩니다. 이는 다음과 같은 위험을 높일 수 있습니다:\n- 심장 질환 위험 증가\n- 혈압 상승\n- 제2형 당뇨병 위험 증가\n\n권장 사항:\n• 칼로리 섭취를 적절히 줄이기\n• 신체 활동 늘리기\n• 식사 양 조절에 집중하기\n• 영양사나 전문가와 상담 고려하기\n\n면책 조항:\n이 정보는 일반적인 참고용이며 전문적인 의학적 조언을 대체하지 않습니다.\n정확한 진단과 치료를 위해 의료 전문가와 상의하시기 바랍니다.';
+
+  @override
+  String get obesityBmiExplanation =>
+      'BMI가 30 이상이면 비만으로 간주됩니다. 이는 다음과 같은 위험을 상당히 높일 수 있습니다:\n- 심장 질환\n- 제2형 당뇨병\n- 고혈압\n- 특정 암 종류\n\n권장 사항:\n• 체계적인 체중 감량 계획을 위해 전문의와 상담\n• 규칙적인 운동 프로그램 참여\n• 전문적 지원(영양사, 상담사) 고려\n• 정기 검사로 진행 상황 모니터링\n\n면책 조항:\n이 정보는 일반적인 참고용이며 전문적인 의학적 조언을 대체하지 않습니다.\n정확한 진단과 치료를 위해 의료 전문가와 상의하시기 바랍니다.';
+
+  @override
+  String get inchesLessThanTwelveError => '인치는 12 미만이어야 합니다';
+
+  @override
+  String get thankyouTitle => '감사합니다!';
+
+  @override
+  String get thankyouMessage =>
+      '귀하의 지원은 큰 힘이 되며 이 앱을 모두에게 무료로 유지하는 데 도움이 됩니다. 정말 감사합니다!';
+
+  @override
+  String get canceledTitle => '문제 없습니다!';
+
+  @override
+  String get canceledMessage => '고려해 주셔서 감사합니다. 나중에 개발 지원을 원하시면 언제든지 도와주세요!';
+
+  @override
+  String get errorMessage => '오류가 발생했습니다. 다시 시도해 주세요.';
+}

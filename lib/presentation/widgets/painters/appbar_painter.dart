@@ -7,7 +7,7 @@ class AppBarPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     // Shadow paint
     final shadowPaint = Paint()
-      ..color = Colors.black.withOpacity(0.3)
+      ..color = Colors.black.withValues(alpha: 0.3)
       ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 8.0)
       ..style = PaintingStyle.fill;
 

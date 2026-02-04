@@ -1,19 +1,19 @@
 PODS:
   - Flutter (1.0.0)
-  - purchases_flutter (6.30.2):
+  - purchases_flutter (9.11.0):
     - Flutter
-    - PurchasesHybridCommon (= 11.1.0)
-  - purchases_ui_flutter (6.30.2):
+    - PurchasesHybridCommon (= 17.31.0)
+  - purchases_ui_flutter (9.11.0):
     - Flutter
-    - PurchasesHybridCommonUI (= 11.1.0)
-  - PurchasesHybridCommon (11.1.0):
-    - RevenueCat (= 4.43.2)
-  - PurchasesHybridCommonUI (11.1.0):
-    - PurchasesHybridCommon (= 11.1.0)
-    - RevenueCatUI (= 4.43.2)
-  - RevenueCat (4.43.2)
-  - RevenueCatUI (4.43.2):
-    - RevenueCat (= 4.43.2)
+    - PurchasesHybridCommonUI (= 17.31.0)
+  - PurchasesHybridCommon (17.31.0):
+    - RevenueCat (= 5.57.0)
+  - PurchasesHybridCommonUI (17.31.0):
+    - PurchasesHybridCommon (= 17.31.0)
+    - RevenueCatUI (= 5.57.0)
+  - RevenueCat (5.57.0)
+  - RevenueCatUI (5.57.0):
+    - RevenueCat (= 5.57.0)
   - shared_preferences_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
@@ -47,16 +47,16 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
 
 SPEC CHECKSUMS:
-  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
-  purchases_flutter: 42d5544e7730ea89a88cc2f008b7c700fd147052
-  purchases_ui_flutter: 4d5d616b4aa2b42d603a4133dceb2c6ac7c42323
-  PurchasesHybridCommon: 4022d5944cb30ec44ba5159e42aa161fe0e30175
-  PurchasesHybridCommonUI: fb80871b28d3d21ae2d0a2102e228331931e6856
-  RevenueCat: 3d934653b7e8b09af88fd47e9e84cfaf5d0a89ba
-  RevenueCatUI: 1417f375baf005eaf3afa8bc99724f567abfd6da
-  shared_preferences_foundation: fcdcbc04712aee1108ac7fda236f363274528f78
-  url_launcher_ios: 5334b05cef931de560670eeae103fd3e431ac3fe
+  Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
+  purchases_flutter: 10a2283136e2c98ddddb78737da5ab8bed457149
+  purchases_ui_flutter: 024c1dccf65953b10dfa9b9c57a873d6f3d45c22
+  PurchasesHybridCommon: 21a11c5d66c8a52cf9aede45cecc2efe1551b98b
+  PurchasesHybridCommonUI: 60fbb660ebbf224df733c90849c4f3b8f6819f4b
+  RevenueCat: 2d8aa56c68fa8e92c0d669e5e797c4a93e284f20
+  RevenueCatUI: 25c86cf10c6cb9e3e9f308c48df55b31bf7fdba5
+  shared_preferences_foundation: 7036424c3d8ec98dfe75ff1667cb0cd531ec82bb
+  url_launcher_ios: 7a95fa5b60cc718a708b8f2966718e93db0cef1b
 
-PODFILE CHECKSUM: 819463e6a0290f5a72f145ba7cde16e8b6ef0796
+PODFILE CHECKSUM: 0a7d5b7d0e53420cb0284f7b2f171f93843b94d2
 
 COCOAPODS: 1.16.2

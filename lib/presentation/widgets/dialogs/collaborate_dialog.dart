@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:light_bmi_calculator/l10n/app_localizations.dart';
 import 'package:purchases_ui_flutter/purchases_ui_flutter.dart';
 
 class CollaborateDialog extends StatelessWidget {
@@ -34,7 +34,6 @@ class CollaborateDialog extends StatelessWidget {
             child: ElevatedButton.icon(
               onPressed: () async {
                 var scaffold = ScaffoldMessenger.of(context);
-                var navigator = Navigator.of(context);
                 var strings = AppLocalizations.of(context);
                 Navigator.of(context).pop();
                 final PaywallResult result =

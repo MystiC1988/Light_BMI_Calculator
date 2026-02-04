@@ -5,7 +5,7 @@ import 'package:light_bmi_calculator/presentation/blocs/collaborate_provider.dar
 import 'package:light_bmi_calculator/presentation/blocs/theme_provider.dart';
 import 'package:light_bmi_calculator/presentation/widgets/dialogs/collaborate_dialog.dart';
 import 'package:light_bmi_calculator/presentation/widgets/dialogs/info_dialog.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:light_bmi_calculator/l10n/app_localizations.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({
@@ -115,7 +115,7 @@ class CustomAppBar extends StatelessWidget {
       context: context,
       builder: (context) => AlertDialog(
         title: Text(AppLocalizations.of(context)!.supportDialogTitle),
-        content: CollaborateDialog(),
+        content: const CollaborateDialog(),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),

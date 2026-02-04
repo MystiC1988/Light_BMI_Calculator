@@ -7,7 +7,7 @@ import 'package:light_bmi_calculator/l10n/l10n.dart';
 import 'package:light_bmi_calculator/presentation/blocs/collaborate_provider.dart';
 import 'package:light_bmi_calculator/presentation/blocs/theme_provider.dart';
 import 'package:light_bmi_calculator/presentation/screens/home_screen.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:light_bmi_calculator/l10n/app_localizations.dart';
 
 void main() async {
   await dotenv.load(fileName: ".env");

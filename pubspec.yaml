@@ -7,28 +7,28 @@ environment:
   sdk: ^3.5.4
 
 dependencies:
-  animate_do: ^3.3.4
-  bloc: ^8.1.4
+  animate_do: ^4.2.0
+  bloc: ^9.2.0
   cupertino_icons: ^1.0.8
   equatable: ^2.0.7
-  flutter_dotenv: ^5.2.1
+  flutter_dotenv: ^6.0.0
   flutter:
     sdk: flutter
-  flutter_bloc: ^8.1.6
+  flutter_bloc: ^9.1.1
   flutter_launcher_icons: ^0.14.2
   flutter_localizations:
     sdk: flutter
-  get_it: ^8.0.3
-  intl: ^0.19.0
+  get_it: ^9.2.0
+  intl: ^0.20.2
   shared_preferences: ^2.2.2
-  purchases_flutter: ^6.15.0
-  purchases_ui_flutter: ^6.15.0
-  syncfusion_flutter_core: ^27.2.5
-  syncfusion_flutter_gauges: ^27.2.5
+  purchases_flutter: ^9.11.0
+  purchases_ui_flutter: ^9.11.0
+  syncfusion_flutter_core: ^32.1.25
+  syncfusion_flutter_gauges: ^32.1.25
   url_launcher: ^6.3.1
 
 dev_dependencies:
-  flutter_lints: ^4.0.0
+  flutter_lints: ^6.0.0
   flutter_test:
     sdk: flutter
 
