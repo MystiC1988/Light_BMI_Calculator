@@ -8,6 +8,7 @@ import 'package:light_bmi_calculator/presentation/widgets/charts/gauge_bmi_chart
 import 'package:light_bmi_calculator/presentation/widgets/shared/copyright.dart';
 import 'package:light_bmi_calculator/presentation/widgets/shared/custom_appbar.dart';
 import 'package:light_bmi_calculator/l10n/app_localizations.dart';
+import 'package:light_bmi_calculator/services/review_service.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -26,6 +27,12 @@ class _HomeScreenState extends State<HomeScreen> {
   String bmi = "0.0";
   double calculatedBMI = 0.0;
   List<bool> isUSUnits = [true, false];
+
+  @override
+  void initState() {
+    super.initState();
+    ReviewService().checkAndRequestReview();
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,7 @@
 PODS:
   - Flutter (1.0.0)
+  - in_app_review (2.0.0):
+    - Flutter
   - purchases_flutter (9.11.0):
     - Flutter
     - PurchasesHybridCommon (= 17.31.0)
@@ -22,6 +24,7 @@ PODS:
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
+  - in_app_review (from `.symlinks/plugins/in_app_review/ios`)
   - purchases_flutter (from `.symlinks/plugins/purchases_flutter/ios`)
   - purchases_ui_flutter (from `.symlinks/plugins/purchases_ui_flutter/ios`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
@@ -37,6 +40,8 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   Flutter:
     :path: Flutter
+  in_app_review:
+    :path: ".symlinks/plugins/in_app_review/ios"
   purchases_flutter:
     :path: ".symlinks/plugins/purchases_flutter/ios"
   purchases_ui_flutter:
@@ -48,6 +53,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
+  in_app_review: 7dd1ea365263f834b8464673f9df72c80c17c937
   purchases_flutter: 10a2283136e2c98ddddb78737da5ab8bed457149
   purchases_ui_flutter: 024c1dccf65953b10dfa9b9c57a873d6f3d45c22
   PurchasesHybridCommon: 21a11c5d66c8a52cf9aede45cecc2efe1551b98b
