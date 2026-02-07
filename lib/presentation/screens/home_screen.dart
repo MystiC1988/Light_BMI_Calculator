@@ -5,7 +5,6 @@ import 'package:light_bmi_calculator/config/styles/custom_decorations.dart';
 import 'package:light_bmi_calculator/config/styles/custom_text_styles.dart';
 import 'package:light_bmi_calculator/presentation/blocs/theme_provider.dart';
 import 'package:light_bmi_calculator/presentation/widgets/charts/gauge_bmi_chart.dart';
-import 'package:light_bmi_calculator/presentation/widgets/painters/appbar_painter.dart';
 import 'package:light_bmi_calculator/presentation/widgets/shared/copyright.dart';
 import 'package:light_bmi_calculator/presentation/widgets/shared/custom_appbar.dart';
 import 'package:light_bmi_calculator/l10n/app_localizations.dart';
@@ -31,6 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     ColorScheme colorScheme = Theme.of(context).colorScheme;
+    TextTheme textTheme = Theme.of(context).textTheme;
     return BlocBuilder<ThemeProvider, ThemeData>(
         builder: (BuildContext context, state) {
       return Container(
@@ -55,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 onTap: () => FocusScope.of(context).requestFocus(nullFocus),
                 child: Stack(children: [
                   Padding(
-                    padding: const EdgeInsets.only(top: kToolbarHeight + 40),
+                    padding: const EdgeInsets.only(top: kToolbarHeight),
                     child: SingleChildScrollView(
                       physics: const AlwaysScrollableScrollPhysics(),
                       child: Padding(
@@ -66,14 +66,18 @@ class _HomeScreenState extends State<HomeScreen> {
                                 value: calculatedBMI,
                                 bmi: bmi,
                                 brightness: state.brightness),
+                            const SizedBox(height: 30),
                             (isUSUnits[0])
                                 ? Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
+                                      Icon(Icons.emoji_people,
+                                          color: colorScheme.primary),
+                                      const SizedBox(width: 5),
                                       Text(
                                           AppLocalizations.of(context)!
                                               .heightLabel,
-                                          style: CustomTextStyles.bigTextLabel),
+                                          style: textTheme.titleLarge),
                                       const SizedBox(
                                         width: 10,
                                       ),
@@ -115,10 +119,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ? Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
+                                      Icon(Icons.monitor_weight_outlined,
+                                          color: colorScheme.primary),
+                                      const SizedBox(width: 5),
                                       Text(
                                           AppLocalizations.of(context)!
                                               .weightLabel,
-                                          style: CustomTextStyles.bigTextLabel),
+                                          style: textTheme.titleLarge),
                                       const SizedBox(width: 10),
                                       weightTextField(),
                                       const SizedBox(width: 10),
@@ -151,8 +158,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                     WidgetStateProperty.resolveWith<Color>(
                                   (Set<WidgetState> states) {
                                     if (states.contains(WidgetState.selected)) {
-                                      return const Color.fromARGB(255, 63, 32,
-                                          156); // Color for selected segment
+                                      return colorScheme
+                                          .primary; // Color for selected segment
                                     }
                                     return const Color.fromARGB(
                                         53, 22, 78, 118); // Default color
@@ -162,14 +169,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                     WidgetStateProperty.resolveWith<Color>(
                                   (Set<WidgetState> states) {
                                     if (states.contains(WidgetState.selected)) {
-                                      return Colors.white;
+                                      return colorScheme
+                                          .onPrimary; // Text color for selected segment
                                     }
                                     return colorScheme
                                         .secondary; // Default color
                                   },
                                 ),
                                 overlayColor: WidgetStateProperty.all(
-                                    const Color.fromARGB(255, 42, 26, 89)),
+                                    colorScheme.primary),
                                 elevation: WidgetStateProperty.all(10),
                                 side: WidgetStateProperty.all(const BorderSide(
                                     color: Color.fromARGB(78, 255, 253, 253),
@@ -214,15 +222,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                     ),
-                  ),
-                  IgnorePointer(
-                    ignoring: true,
-                    child: CustomPaint(
-                        painter: AppBarPainter(brightness: state.brightness),
-                        child: const SizedBox(
-                          height: 280,
-                          width: double.infinity,
-                        )),
                   ),
                 ]),
               ),

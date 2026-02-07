@@ -15,6 +15,7 @@ class GaugeBmiChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ColorScheme colors = Theme.of(context).colorScheme;
     return SfRadialGauge(enableLoadingAnimation: true, axes: <RadialAxis>[
       RadialAxis(
           onAxisTapped: (value) => showRangeInformation(context, value: value),
@@ -22,50 +23,51 @@ class GaugeBmiChart extends StatelessWidget {
           maximum: 39,
           startAngle: 160,
           endAngle: 20,
-          radiusFactor: 1.1,
-          axisLineStyle: const AxisLineStyle(
-              thickness: 100,
+          radiusFactor: 1,
+          axisLineStyle: AxisLineStyle(
+              color: colors.secondaryFixedDim,
+              thickness: 80,
               thicknessUnit: GaugeSizeUnit.logicalPixel,
-              cornerStyle: CornerStyle.bothFlat),
+              cornerStyle: CornerStyle.bothCurve),
           showTicks: false,
           showLabels: false,
-          centerY: 0.6,
+          centerY: 0.75,
           ranges: <GaugeRange>[
             GaugeRange(
-                startValue: 0,
+                startValue: 13,
                 endValue: 18.5,
                 labelStyle: const GaugeTextStyle(
-                    fontSize: 15, fontWeight: FontWeight.bold),
-                color: Colors.blue,
-                startWidth: 100,
-                endWidth: 100,
+                    fontSize: 12, fontWeight: FontWeight.bold),
+                color: const Color.fromARGB(255, 133, 199, 252),
+                startWidth: 40,
+                endWidth: 40,
                 label: AppLocalizations.of(context)!.underweightLabel),
             GaugeRange(
                 startValue: 18.5,
                 endValue: 24.9,
                 labelStyle: const GaugeTextStyle(
-                    fontSize: 15, fontWeight: FontWeight.bold),
-                color: const Color.fromARGB(255, 23, 179, 28),
-                startWidth: 100,
-                endWidth: 100,
+                    fontSize: 12, fontWeight: FontWeight.bold),
+                color: const Color.fromARGB(255, 112, 209, 115),
+                startWidth: 40,
+                endWidth: 40,
                 label: AppLocalizations.of(context)!.normalLabel),
             GaugeRange(
                 startValue: 24.9,
                 endValue: 29.9,
                 labelStyle: const GaugeTextStyle(
-                    fontSize: 15, fontWeight: FontWeight.bold),
-                color: const Color.fromARGB(255, 200, 73, 27),
-                startWidth: 100,
-                endWidth: 100,
+                    fontSize: 12, fontWeight: FontWeight.bold),
+                color: const Color.fromARGB(255, 231, 145, 114),
+                startWidth: 40,
+                endWidth: 40,
                 label: AppLocalizations.of(context)!.overweightLabel),
             GaugeRange(
                 startValue: 29.9,
-                endValue: 49,
+                endValue: 39,
                 labelStyle: const GaugeTextStyle(
-                    fontSize: 15, fontWeight: FontWeight.bold),
-                color: const Color.fromARGB(255, 183, 17, 5),
-                startWidth: 100,
-                endWidth: 100,
+                    fontSize: 12, fontWeight: FontWeight.bold),
+                color: const Color.fromARGB(255, 246, 113, 113),
+                startWidth: 40,
+                endWidth: 40,
                 label: AppLocalizations.of(context)!.obeseLabel)
           ],
           pointers: <GaugePointer>[
@@ -73,11 +75,11 @@ class GaugeBmiChart extends StatelessWidget {
               value: value,
               knobStyle: KnobStyle(
                   color: (brightness == Brightness.dark)
-                      ? const Color.fromARGB(255, 255, 255, 255)
-                      : const Color.fromARGB(255, 33, 33, 33)),
+                      ? const Color.fromARGB(255, 208, 208, 208)
+                      : const Color.fromARGB(255, 73, 73, 73)),
               needleColor: (brightness == Brightness.dark)
                   ? const Color.fromARGB(255, 255, 255, 255)
-                  : const Color.fromARGB(255, 0, 0, 0),
+                  : const Color.fromARGB(255, 123, 123, 123),
               enableAnimation: true,
             )
           ],
@@ -92,36 +94,40 @@ class GaugeBmiChart extends StatelessWidget {
                             : getLightColorByValue())),
                 angle: 90,
                 positionFactor: 0.40),
-            const GaugeAnnotation(
+            GaugeAnnotation(
                 horizontalAlignment: GaugeAlignment.far,
                 verticalAlignment: GaugeAlignment.far,
-                widget: Icon(Icons.info, color: Colors.white),
-                angle: 175,
-                positionFactor: 0.54),
-            const GaugeAnnotation(
+                widget: Icon(Icons.info_outline,
+                    color: colors.onSecondaryFixedVariant),
+                angle: 180,
+                positionFactor: 0.56),
+            GaugeAnnotation(
                 horizontalAlignment: GaugeAlignment.far,
                 verticalAlignment: GaugeAlignment.far,
-                widget: Icon(Icons.info, color: Colors.white),
+                widget: Icon(Icons.info_outline,
+                    color: colors.onSecondaryFixedVariant),
                 angle: 235,
-                positionFactor: 0.52),
-            const GaugeAnnotation(
+                positionFactor: 0.56),
+            GaugeAnnotation(
                 verticalAlignment: GaugeAlignment.far,
-                widget: Icon(Icons.info, color: Colors.white),
+                widget: Icon(Icons.info_outline,
+                    color: colors.onSecondaryFixedVariant),
                 angle: 283,
-                positionFactor: 0.53),
-            const GaugeAnnotation(
+                positionFactor: 0.56),
+            GaugeAnnotation(
                 horizontalAlignment: GaugeAlignment.near,
                 verticalAlignment: GaugeAlignment.far,
-                widget: Icon(Icons.info, color: Colors.white),
+                widget: Icon(Icons.info_outline,
+                    color: colors.onSecondaryFixedVariant),
                 angle: 345,
-                positionFactor: 0.53)
+                positionFactor: 0.56)
           ])
     ]);
   }
 
   Color getDarkColorByValue() {
     if (value < 18.5) {
-      return const Color.fromARGB(255, 80, 176, 255);
+      return const Color.fromARGB(255, 107, 183, 241);
     } else if (value < 24.9) {
       return const Color.fromARGB(255, 30, 255, 37);
     } else if (value < 29.9) {
@@ -135,11 +141,11 @@ class GaugeBmiChart extends StatelessWidget {
     if (value < 18.5) {
       return const Color.fromARGB(255, 42, 141, 222);
     } else if (value < 24.9) {
-      return const Color.fromARGB(255, 22, 168, 26);
+      return const Color.fromARGB(255, 32, 164, 68);
     } else if (value < 29.9) {
-      return const Color.fromARGB(255, 213, 87, 42);
+      return const Color.fromARGB(255, 213, 130, 100);
     } else {
-      return const Color.fromARGB(255, 190, 25, 13);
+      return const Color.fromARGB(255, 244, 82, 82);
     }
   }
 

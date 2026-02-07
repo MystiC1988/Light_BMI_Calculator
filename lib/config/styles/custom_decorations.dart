@@ -6,8 +6,8 @@ class CustomDecorations {
       center: Alignment.topLeft,
       radius: 2.0,
       colors: [
-        Color(0xFF2A1446),
-        Color(0xFF06162E),
+        Color.fromARGB(255, 22, 21, 23),
+        Color.fromARGB(255, 7, 20, 39),
       ],
     ),
   );
@@ -17,8 +17,8 @@ class CustomDecorations {
       center: Alignment.topLeft,
       radius: 2.0,
       colors: [
-        Color.fromARGB(255, 240, 227, 255),
-        Color.fromARGB(255, 228, 234, 255),
+        Color.fromARGB(255, 255, 255, 255),
+        Color.fromARGB(255, 196, 204, 231),
       ],
     ),
   );
