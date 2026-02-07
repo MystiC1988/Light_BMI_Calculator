@@ -106,10 +106,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                 : Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
+                                      Icon(Icons.emoji_people,
+                                          color: colorScheme.primary),
+                                      const SizedBox(width: 5),
                                       Text(
                                           AppLocalizations.of(context)!
                                               .heightLabel,
-                                          style: CustomTextStyles.bigTextLabel),
+                                          style: textTheme.titleLarge),
                                       const SizedBox(
                                         width: 10,
                                       ),
@@ -145,10 +148,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                 : Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
+                                      Icon(Icons.monitor_weight_outlined,
+                                          color: colorScheme.primary),
+                                      const SizedBox(width: 5),
                                       Text(
                                           AppLocalizations.of(context)!
                                               .weightLabel,
-                                          style: CustomTextStyles.bigTextLabel),
+                                          style: textTheme.titleLarge),
                                       const SizedBox(width: 10),
                                       getWeightKgTextField(),
                                       const SizedBox(width: 10),
