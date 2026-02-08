@@ -54,189 +54,167 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Scaffold(
               extendBodyBehindAppBar: true,
               backgroundColor: Colors.transparent,
-              appBar: const PreferredSize(
-                preferredSize: Size.fromHeight(200),
-                child: CustomAppBar(),
-              ),
               body: GestureDetector(
                 onTap: () => FocusScope.of(context).requestFocus(nullFocus),
-                child: Stack(children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: kToolbarHeight),
-                    child: SingleChildScrollView(
-                      physics: const AlwaysScrollableScrollPhysics(),
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: kToolbarHeight),
-                        child: Column(
-                          children: [
-                            GaugeBmiChart(
-                                value: calculatedBMI,
-                                bmi: bmi,
-                                brightness: state.brightness),
-                            const SizedBox(height: 30),
-                            (isUSUnits[0])
-                                ? Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      Icon(Icons.emoji_people,
-                                          color: colorScheme.primary),
-                                      const SizedBox(width: 5),
-                                      Text(
-                                          AppLocalizations.of(context)!
-                                              .heightLabel,
-                                          style: textTheme.titleLarge),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      getHeightFtTextField(),
-                                      const SizedBox(width: 10),
-                                      Text(
-                                          AppLocalizations.of(context)!
-                                              .feetAbbreviation,
-                                          style: CustomTextStyles.bigTextLabel),
-                                      const SizedBox(width: 20),
-                                      getHeightinTextField(),
-                                      const SizedBox(width: 10),
-                                      Text(
-                                          AppLocalizations.of(context)!
-                                              .inchesAbbreviation,
-                                          style: CustomTextStyles.bigTextLabel),
-                                    ],
-                                  )
-                                : Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(Icons.emoji_people,
-                                          color: colorScheme.primary),
-                                      const SizedBox(width: 5),
-                                      Text(
-                                          AppLocalizations.of(context)!
-                                              .heightLabel,
-                                          style: textTheme.titleLarge),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      getHeightCmTextField(),
-                                      const SizedBox(width: 10),
-                                      Text(
-                                          AppLocalizations.of(context)!
-                                              .centimetresAbbreviation,
-                                          style: CustomTextStyles.bigTextLabel),
-                                    ],
-                                  ),
-                            const SizedBox(height: 20),
-                            (isUSUnits[0])
-                                ? Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(Icons.monitor_weight_outlined,
-                                          color: colorScheme.primary),
-                                      const SizedBox(width: 5),
-                                      Text(
-                                          AppLocalizations.of(context)!
-                                              .weightLabel,
-                                          style: textTheme.titleLarge),
-                                      const SizedBox(width: 10),
-                                      weightTextField(),
-                                      const SizedBox(width: 10),
-                                      Text(
-                                          AppLocalizations.of(context)!
-                                              .poundsAbbreviation,
-                                          style: CustomTextStyles.bigTextLabel),
-                                    ],
-                                  )
-                                : Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(Icons.monitor_weight_outlined,
-                                          color: colorScheme.primary),
-                                      const SizedBox(width: 5),
-                                      Text(
-                                          AppLocalizations.of(context)!
-                                              .weightLabel,
-                                          style: textTheme.titleLarge),
-                                      const SizedBox(width: 10),
-                                      getWeightKgTextField(),
-                                      const SizedBox(width: 10),
-                                      Text(
-                                          AppLocalizations.of(context)!
-                                              .kilogramsAbbreviation,
-                                          style: CustomTextStyles.bigTextLabel),
-                                    ],
-                                  ),
-                            const SizedBox(height: 30),
-                            SegmentedButton<int>(
-                              style: ButtonStyle(
-                                backgroundColor:
-                                    WidgetStateProperty.resolveWith<Color>(
-                                  (Set<WidgetState> states) {
-                                    if (states.contains(WidgetState.selected)) {
-                                      return colorScheme
-                                          .primary; // Color for selected segment
-                                    }
-                                    return const Color.fromARGB(
-                                        53, 22, 78, 118); // Default color
-                                  },
+                child: SingleChildScrollView(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  child: Column(
+                    children: [
+                      CustomAppBar(),
+                      GaugeBmiChart(
+                          value: calculatedBMI,
+                          bmi: bmi,
+                          brightness: state.brightness),
+                      (isUSUnits[0])
+                          ? Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Icon(Icons.emoji_people,
+                                    color: colorScheme.primary),
+                                const SizedBox(width: 5),
+                                Text(AppLocalizations.of(context)!.heightLabel,
+                                    style: textTheme.titleLarge),
+                                const SizedBox(
+                                  width: 10,
                                 ),
-                                foregroundColor:
-                                    WidgetStateProperty.resolveWith<Color>(
-                                  (Set<WidgetState> states) {
-                                    if (states.contains(WidgetState.selected)) {
-                                      return colorScheme
-                                          .onPrimary; // Text color for selected segment
-                                    }
-                                    return colorScheme
-                                        .secondary; // Default color
-                                  },
-                                ),
-                                overlayColor: WidgetStateProperty.all(
-                                    colorScheme.primary),
-                                elevation: WidgetStateProperty.all(10),
-                                side: WidgetStateProperty.all(const BorderSide(
-                                    color: Color.fromARGB(78, 255, 253, 253),
-                                    width: 1)),
-                              ),
-                              segments: <ButtonSegment<int>>[
-                                ButtonSegment<int>(
-                                  value: 0,
-                                  label: Text(
-                                    AppLocalizations.of(context)!.usUnitsLabel,
-                                  ),
-                                ),
-                                ButtonSegment<int>(
-                                  value: 1,
-                                  label: Text(AppLocalizations.of(context)!
-                                      .metricUnitsLabel),
-                                ),
+                                getHeightFtTextField(),
+                                const SizedBox(width: 10),
+                                Text(
+                                    AppLocalizations.of(context)!
+                                        .feetAbbreviation,
+                                    style: CustomTextStyles.bigTextLabel),
+                                const SizedBox(width: 20),
+                                getHeightinTextField(),
+                                const SizedBox(width: 10),
+                                Text(
+                                    AppLocalizations.of(context)!
+                                        .inchesAbbreviation,
+                                    style: CustomTextStyles.bigTextLabel),
                               ],
-                              selected: <int>{isUSUnits[0] ? 0 : 1},
-                              onSelectionChanged: (Set<int> newSelection) {
-                                setState(() {
-                                  resetAllvalues();
-                                  isUSUnits = [
-                                    newSelection.contains(0),
-                                    newSelection.contains(1)
-                                  ];
-                                });
-                              },
+                            )
+                          : Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(Icons.emoji_people,
+                                    color: colorScheme.primary),
+                                const SizedBox(width: 5),
+                                Text(AppLocalizations.of(context)!.heightLabel,
+                                    style: textTheme.titleLarge),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                getHeightCmTextField(),
+                                const SizedBox(width: 10),
+                                Text(
+                                    AppLocalizations.of(context)!
+                                        .centimetresAbbreviation,
+                                    style: CustomTextStyles.bigTextLabel),
+                              ],
                             ),
-                            const SizedBox(height: 30),
-                            IconButton(
-                                icon: (state.brightness == Brightness.dark)
-                                    ? const Icon(Icons.dark_mode)
-                                    : const Icon(Icons.light_mode),
-                                iconSize: 50,
-                                color: state.colorScheme.secondary,
-                                onPressed: () => context
-                                    .read<ThemeProvider>()
-                                    .toggleTheme()),
-                            const SizedBox(height: 30),
-                          ],
+                      const SizedBox(height: 20),
+                      (isUSUnits[0])
+                          ? Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(Icons.monitor_weight_outlined,
+                                    color: colorScheme.primary),
+                                const SizedBox(width: 5),
+                                Text(AppLocalizations.of(context)!.weightLabel,
+                                    style: textTheme.titleLarge),
+                                const SizedBox(width: 10),
+                                weightTextField(),
+                                const SizedBox(width: 10),
+                                Text(
+                                    AppLocalizations.of(context)!
+                                        .poundsAbbreviation,
+                                    style: CustomTextStyles.bigTextLabel),
+                              ],
+                            )
+                          : Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(Icons.monitor_weight_outlined,
+                                    color: colorScheme.primary),
+                                const SizedBox(width: 5),
+                                Text(AppLocalizations.of(context)!.weightLabel,
+                                    style: textTheme.titleLarge),
+                                const SizedBox(width: 10),
+                                getWeightKgTextField(),
+                                const SizedBox(width: 10),
+                                Text(
+                                    AppLocalizations.of(context)!
+                                        .kilogramsAbbreviation,
+                                    style: CustomTextStyles.bigTextLabel),
+                              ],
+                            ),
+                      const SizedBox(height: 30),
+                      SegmentedButton<int>(
+                        style: ButtonStyle(
+                          backgroundColor:
+                              WidgetStateProperty.resolveWith<Color>(
+                            (Set<WidgetState> states) {
+                              if (states.contains(WidgetState.selected)) {
+                                return colorScheme
+                                    .primary; // Color for selected segment
+                              }
+                              return const Color.fromARGB(
+                                  53, 22, 78, 118); // Default color
+                            },
+                          ),
+                          foregroundColor:
+                              WidgetStateProperty.resolveWith<Color>(
+                            (Set<WidgetState> states) {
+                              if (states.contains(WidgetState.selected)) {
+                                return colorScheme
+                                    .onPrimary; // Text color for selected segment
+                              }
+                              return colorScheme.secondary; // Default color
+                            },
+                          ),
+                          overlayColor:
+                              WidgetStateProperty.all(colorScheme.primary),
+                          elevation: WidgetStateProperty.all(10),
+                          side: WidgetStateProperty.all(const BorderSide(
+                              color: Color.fromARGB(78, 255, 253, 253),
+                              width: 1)),
                         ),
+                        segments: <ButtonSegment<int>>[
+                          ButtonSegment<int>(
+                            value: 0,
+                            label: Text(
+                              AppLocalizations.of(context)!.usUnitsLabel,
+                            ),
+                          ),
+                          ButtonSegment<int>(
+                            value: 1,
+                            label: Text(
+                                AppLocalizations.of(context)!.metricUnitsLabel),
+                          ),
+                        ],
+                        selected: <int>{isUSUnits[0] ? 0 : 1},
+                        onSelectionChanged: (Set<int> newSelection) {
+                          setState(() {
+                            resetAllvalues();
+                            isUSUnits = [
+                              newSelection.contains(0),
+                              newSelection.contains(1)
+                            ];
+                          });
+                        },
                       ),
-                    ),
+                      const SizedBox(height: 30),
+                      IconButton(
+                          icon: (state.brightness == Brightness.dark)
+                              ? const Icon(Icons.dark_mode)
+                              : const Icon(Icons.light_mode),
+                          iconSize: 50,
+                          color: state.colorScheme.secondary,
+                          onPressed: () =>
+                              context.read<ThemeProvider>().toggleTheme()),
+                      const SizedBox(height: 30),
+                    ],
                   ),
-                ]),
+                ),
               ),
               persistentFooterButtons: const [Center(child: Copyright())],
             )),

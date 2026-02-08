@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:light_bmi_calculator/l10n/app_localizations.dart';
+import 'dart:math' as math;
 
 class GaugeBmiChart extends StatelessWidget {
   final double value;
@@ -16,113 +17,153 @@ class GaugeBmiChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ColorScheme colors = Theme.of(context).colorScheme;
-    return SfRadialGauge(enableLoadingAnimation: true, axes: <RadialAxis>[
-      RadialAxis(
-          onAxisTapped: (value) => showRangeInformation(context, value: value),
-          minimum: 13,
-          maximum: 39,
-          startAngle: 160,
-          endAngle: 20,
-          radiusFactor: 1,
-          axisLineStyle: AxisLineStyle(
-              color: colors.secondaryFixedDim,
-              thickness: 80,
-              thicknessUnit: GaugeSizeUnit.logicalPixel,
-              cornerStyle: CornerStyle.bothCurve),
-          showTicks: false,
-          showLabels: false,
-          centerY: 0.75,
-          ranges: <GaugeRange>[
-            GaugeRange(
-                startValue: 13,
-                endValue: 18.5,
-                labelStyle: const GaugeTextStyle(
-                    fontSize: 12, fontWeight: FontWeight.bold),
-                color: const Color.fromARGB(255, 133, 199, 252),
-                startWidth: 40,
-                endWidth: 40,
-                label: AppLocalizations.of(context)!.underweightLabel),
-            GaugeRange(
-                startValue: 18.5,
-                endValue: 24.9,
-                labelStyle: const GaugeTextStyle(
-                    fontSize: 12, fontWeight: FontWeight.bold),
-                color: const Color.fromARGB(255, 112, 209, 115),
-                startWidth: 40,
-                endWidth: 40,
-                label: AppLocalizations.of(context)!.normalLabel),
-            GaugeRange(
-                startValue: 24.9,
-                endValue: 29.9,
-                labelStyle: const GaugeTextStyle(
-                    fontSize: 12, fontWeight: FontWeight.bold),
-                color: const Color.fromARGB(255, 231, 145, 114),
-                startWidth: 40,
-                endWidth: 40,
-                label: AppLocalizations.of(context)!.overweightLabel),
-            GaugeRange(
-                startValue: 29.9,
-                endValue: 39,
-                labelStyle: const GaugeTextStyle(
-                    fontSize: 12, fontWeight: FontWeight.bold),
-                color: const Color.fromARGB(255, 246, 113, 113),
-                startWidth: 40,
-                endWidth: 40,
-                label: AppLocalizations.of(context)!.obeseLabel)
+
+    // Angles for the buttons
+    final List<double> angles = [180, 235, 283, 345];
+    final List<double> values = [15.0, 22.0, 27.0, 35.0];
+
+    return LayoutBuilder(builder: (context, constraints) {
+      // Setup dimensions based on constraints
+      final double width = constraints.maxWidth;
+      // Assuming the gauge takes square space or defined aspect ratio.
+      // SfRadialGauge usually fits within the smallest dimension.
+      // Based on usage, it seems full width.
+      final double height = width;
+
+      return SizedBox(
+        height: height,
+        width: width,
+        child: Stack(
+          children: [
+            SfRadialGauge(enableLoadingAnimation: false, axes: <RadialAxis>[
+              RadialAxis(
+                  minimum: 13,
+                  maximum: 39,
+                  startAngle: 160,
+                  endAngle: 20,
+                  radiusFactor:
+                      0.9, // Reduced slightly to avoid clipping if any
+                  axisLineStyle: AxisLineStyle(
+                      color: colors.secondaryFixedDim,
+                      thickness: 80,
+                      thicknessUnit: GaugeSizeUnit.logicalPixel,
+                      cornerStyle: CornerStyle.bothCurve),
+                  showTicks: false,
+                  showLabels: false,
+                  centerY: 0.6,
+                  ranges: <GaugeRange>[
+                    GaugeRange(
+                        startValue: 13,
+                        endValue: 18.5,
+                        labelStyle: const GaugeTextStyle(
+                            fontSize: 12, fontWeight: FontWeight.bold),
+                        color: const Color.fromARGB(255, 133, 199, 252),
+                        startWidth: 40,
+                        endWidth: 40,
+                        label: AppLocalizations.of(context)!.underweightLabel),
+                    GaugeRange(
+                        startValue: 18.5,
+                        endValue: 24.9,
+                        labelStyle: const GaugeTextStyle(
+                            fontSize: 12, fontWeight: FontWeight.bold),
+                        color: const Color.fromARGB(255, 112, 209, 115),
+                        startWidth: 40,
+                        endWidth: 40,
+                        label: AppLocalizations.of(context)!.normalLabel),
+                    GaugeRange(
+                        startValue: 24.9,
+                        endValue: 29.9,
+                        labelStyle: const GaugeTextStyle(
+                            fontSize: 12, fontWeight: FontWeight.bold),
+                        color: const Color.fromARGB(255, 231, 145, 114),
+                        startWidth: 40,
+                        endWidth: 40,
+                        label: AppLocalizations.of(context)!.overweightLabel),
+                    GaugeRange(
+                        startValue: 29.9,
+                        endValue: 39,
+                        labelStyle: const GaugeTextStyle(
+                            fontSize: 12, fontWeight: FontWeight.bold),
+                        color: const Color.fromARGB(255, 246, 113, 113),
+                        startWidth: 40,
+                        endWidth: 40,
+                        label: AppLocalizations.of(context)!.obeseLabel)
+                  ],
+                  pointers: <GaugePointer>[
+                    NeedlePointer(
+                      value: value,
+                      knobStyle: KnobStyle(
+                          color: (brightness == Brightness.dark)
+                              ? const Color.fromARGB(255, 208, 208, 208)
+                              : const Color.fromARGB(255, 73, 73, 73)),
+                      needleColor: (brightness == Brightness.dark)
+                          ? const Color.fromARGB(255, 255, 255, 255)
+                          : const Color.fromARGB(255, 123, 123, 123),
+                      enableAnimation: true,
+                    )
+                  ],
+                  annotations: <GaugeAnnotation>[
+                    GaugeAnnotation(
+                        widget: Text(
+                            "${AppLocalizations.of(context)!.bmiLabel} $bmi",
+                            style: TextStyle(
+                                fontSize: 30,
+                                fontWeight: FontWeight.bold,
+                                color: (brightness == Brightness.dark)
+                                    ? getDarkColorByValue()
+                                    : getLightColorByValue())),
+                        angle: 90,
+                        positionFactor: 0.40),
+                    _buildVisualIconAnnotation(
+                        180, colors.onSecondaryFixedVariant),
+                    _buildVisualIconAnnotation(
+                        235, colors.onSecondaryFixedVariant),
+                    _buildVisualIconAnnotation(
+                        283, colors.onSecondaryFixedVariant),
+                    _buildVisualIconAnnotation(
+                        345, colors.onSecondaryFixedVariant),
+                  ])
+            ]),
+            ...List.generate(angles.length, (index) {
+              final double radius = (width / 2) * 0.9;
+              final double centerX = width / 2;
+              final double centerY = height * 0.6;
+              final double positionFactor = 0.56;
+              final double angleRad = angles[index] * (math.pi / 180);
+
+              // Coordinates
+              final double dx =
+                  centerX + (radius * positionFactor * math.cos(angleRad));
+              final double dy =
+                  centerY + (radius * positionFactor * math.sin(angleRad));
+
+              return Positioned(
+                left: dx - 24, // 24 is half of 48 (icon button size)
+                top: dy - 24,
+                child: IconButton(
+                  icon: const Icon(Icons.info_outline,
+                      color: Colors.transparent), // Invisible icon, just hitbox
+                  iconSize: 24,
+                  constraints:
+                      const BoxConstraints(minWidth: 48, minHeight: 48),
+                  onPressed: () =>
+                      showRangeInformation(context, value: values[index]),
+                ),
+              );
+            }),
           ],
-          pointers: <GaugePointer>[
-            NeedlePointer(
-              value: value,
-              knobStyle: KnobStyle(
-                  color: (brightness == Brightness.dark)
-                      ? const Color.fromARGB(255, 208, 208, 208)
-                      : const Color.fromARGB(255, 73, 73, 73)),
-              needleColor: (brightness == Brightness.dark)
-                  ? const Color.fromARGB(255, 255, 255, 255)
-                  : const Color.fromARGB(255, 123, 123, 123),
-              enableAnimation: true,
-            )
-          ],
-          annotations: <GaugeAnnotation>[
-            GaugeAnnotation(
-                widget: Text("${AppLocalizations.of(context)!.bmiLabel} $bmi",
-                    style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                        color: (brightness == Brightness.dark)
-                            ? getDarkColorByValue()
-                            : getLightColorByValue())),
-                angle: 90,
-                positionFactor: 0.40),
-            GaugeAnnotation(
-                horizontalAlignment: GaugeAlignment.far,
-                verticalAlignment: GaugeAlignment.far,
-                widget: Icon(Icons.info_outline,
-                    color: colors.onSecondaryFixedVariant),
-                angle: 180,
-                positionFactor: 0.56),
-            GaugeAnnotation(
-                horizontalAlignment: GaugeAlignment.far,
-                verticalAlignment: GaugeAlignment.far,
-                widget: Icon(Icons.info_outline,
-                    color: colors.onSecondaryFixedVariant),
-                angle: 235,
-                positionFactor: 0.56),
-            GaugeAnnotation(
-                verticalAlignment: GaugeAlignment.far,
-                widget: Icon(Icons.info_outline,
-                    color: colors.onSecondaryFixedVariant),
-                angle: 283,
-                positionFactor: 0.56),
-            GaugeAnnotation(
-                horizontalAlignment: GaugeAlignment.near,
-                verticalAlignment: GaugeAlignment.far,
-                widget: Icon(Icons.info_outline,
-                    color: colors.onSecondaryFixedVariant),
-                angle: 345,
-                positionFactor: 0.56)
-          ])
-    ]);
+        ),
+      );
+    });
+  }
+
+  GaugeAnnotation _buildVisualIconAnnotation(double angle, Color color) {
+    return GaugeAnnotation(
+        horizontalAlignment: GaugeAlignment.center,
+        verticalAlignment: GaugeAlignment.center,
+        widget: Icon(Icons.info_outline, color: color),
+        angle: angle,
+        positionFactor: 0.65);
   }
 
   Color getDarkColorByValue() {

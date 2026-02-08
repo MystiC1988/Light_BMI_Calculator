@@ -15,6 +15,14 @@ Light BMI Calculator is an easy-to-use application that helps users calculate an
 - Instant results with BMI classification
 - Clean and modern design
 
+## What's New (v1.1.0)
+
+- **Enhanced UI:** Added icons for height and weight labels and improved the overall interface.
+- **US Units Support:** New interface style specifically designed for US unit inputs.
+- **Native Splash Screen:** Added a native splash screen with support for both Light and Dark modes.
+- **In-App Review:** Integrated smart logic to request reviews after the app has been used multiple times.
+- **Project Structure:** Major updates to dependencies and internal project organization for better performance and maintainability.
+
 ## App Availability
 
 1. iOS (App Store):  
