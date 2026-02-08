@@ -25,15 +25,19 @@ class GaugeBmiChart extends StatelessWidget {
     return LayoutBuilder(builder: (context, constraints) {
       // Setup dimensions based on constraints
       final double width = constraints.maxWidth;
-      // Assuming the gauge takes square space or defined aspect ratio.
-      // SfRadialGauge usually fits within the smallest dimension.
-      // Based on usage, it seems full width.
-      final double height = width;
+      // Use available height or fallback to width if unconstrained (square)
+      final double height = (constraints.maxHeight != double.infinity)
+          ? constraints.maxHeight
+          : width;
+
+      // SfRadialGauge usually calculates radius based on the smaller dimension
+      final double limitingDimension = math.min(width, height);
 
       return SizedBox(
         height: height,
         width: width,
         child: Stack(
+          alignment: Alignment.center,
           children: [
             SfRadialGauge(enableLoadingAnimation: false, axes: <RadialAxis>[
               RadialAxis(
@@ -42,7 +46,7 @@ class GaugeBmiChart extends StatelessWidget {
                   startAngle: 160,
                   endAngle: 20,
                   radiusFactor:
-                      0.9, // Reduced slightly to avoid clipping if any
+                      1.2, // Reduced slightly to avoid clipping if any
                   axisLineStyle: AxisLineStyle(
                       color: colors.secondaryFixedDim,
                       thickness: 80,
@@ -125,10 +129,15 @@ class GaugeBmiChart extends StatelessWidget {
                   ])
             ]),
             ...List.generate(angles.length, (index) {
-              final double radius = (width / 2) * 0.9;
+              // Calculate radius based on the limiting dimension (min of width or height)
+              // This matches SfRadialGauge's internal logic
+              final double radius = (limitingDimension / 2) * 1.2;
+
               final double centerX = width / 2;
+              // CenterY matches the centerY property of RadialAxis (0.6 of height)
               final double centerY = height * 0.6;
-              final double positionFactor = 0.56;
+
+              final double positionFactor = 0.64;
               final double angleRad = angles[index] * (math.pi / 180);
 
               // Coordinates
@@ -163,7 +172,7 @@ class GaugeBmiChart extends StatelessWidget {
         verticalAlignment: GaugeAlignment.center,
         widget: Icon(Icons.info_outline, color: color),
         angle: angle,
-        positionFactor: 0.65);
+        positionFactor: 0.64);
   }
 
   Color getDarkColorByValue() {

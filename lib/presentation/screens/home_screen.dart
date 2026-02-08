@@ -61,10 +61,16 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Column(
                     children: [
                       CustomAppBar(),
-                      GaugeBmiChart(
-                          value: calculatedBMI,
-                          bmi: bmi,
-                          brightness: state.brightness),
+                      SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.05),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width * 0.65,
+                        child: GaugeBmiChart(
+                            value: calculatedBMI,
+                            bmi: bmi,
+                            brightness: state.brightness),
+                      ),
+                      const SizedBox(height: 10),
                       (isUSUnits[0])
                           ? Row(
                               mainAxisAlignment: MainAxisAlignment.center,
